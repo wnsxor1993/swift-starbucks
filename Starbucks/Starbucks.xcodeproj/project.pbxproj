@@ -13,9 +13,13 @@
 		D283BF852828B0D200A86761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D283BF832828B0D200A86761 /* Main.storyboard */; };
 		D283BF872828B0D300A86761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D283BF862828B0D300A86761 /* Assets.xcassets */; };
 		D283BF8A2828B0D300A86761 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D283BF882828B0D300A86761 /* LaunchScreen.storyboard */; };
+		D9F514AC947466AA90D15FB3 /* Pods_Starbucks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0962C08CB6FAFAA462024834 /* Pods_Starbucks.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0962C08CB6FAFAA462024834 /* Pods_Starbucks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Starbucks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		242980AD85F9A3C5169109D8 /* Pods-Starbucks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.debug.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.debug.xcconfig"; sourceTree = "<group>"; };
+		B7A73CB1794AEDE897351AAD /* Pods-Starbucks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.release.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.release.xcconfig"; sourceTree = "<group>"; };
 		D283BF7A2828B0D200A86761 /* Starbucks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starbucks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D283BF7D2828B0D200A86761 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D283BF7F2828B0D200A86761 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9F514AC947466AA90D15FB3 /* Pods_Starbucks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D415B0583024A6212B76700 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				242980AD85F9A3C5169109D8 /* Pods-Starbucks.debug.xcconfig */,
+				B7A73CB1794AEDE897351AAD /* Pods-Starbucks.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D283BF712828B0D200A86761 = {
 			isa = PBXGroup;
 			children = (
 				D283BF7C2828B0D200A86761 /* Starbucks */,
 				D283BF7B2828B0D200A86761 /* Products */,
+				4D415B0583024A6212B76700 /* Pods */,
+				EE8676EEC960EC0C3CA41545 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +83,14 @@
 			path = Starbucks;
 			sourceTree = "<group>";
 		};
+		EE8676EEC960EC0C3CA41545 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0962C08CB6FAFAA462024834 /* Pods_Starbucks.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D283BF8E2828B0D300A86761 /* Build configuration list for PBXNativeTarget "Starbucks" */;
 			buildPhases = (
+				98EF4B819EACBB1368DD1382 /* [CP] Check Pods Manifest.lock */,
 				D283BF762828B0D200A86761 /* Sources */,
 				D283BF772828B0D200A86761 /* Frameworks */,
 				D283BF782828B0D200A86761 /* Resources */,
+				33437D0868BE0C3764DE058C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		33437D0868BE0C3764DE058C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Starbucks/Pods-Starbucks-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Starbucks/Pods-Starbucks-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Starbucks/Pods-Starbucks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98EF4B819EACBB1368DD1382 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Starbucks-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D283BF762828B0D200A86761 /* Sources */ = {
@@ -216,7 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,6 +350,7 @@
 		};
 		D283BF8F2828B0D300A86761 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 242980AD85F9A3C5169109D8 /* Pods-Starbucks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +379,7 @@
 		};
 		D283BF902828B0D300A86761 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7A73CB1794AEDE897351AAD /* Pods-Starbucks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
