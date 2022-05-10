@@ -20,7 +20,7 @@ struct Event: Codable {
         case range
         case target
         case description
-        case eventProducts = "event_products"
+        case eventProducts = "event-products"
     }
 
 }

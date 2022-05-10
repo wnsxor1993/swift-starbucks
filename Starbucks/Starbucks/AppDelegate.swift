@@ -8,18 +8,8 @@
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        return true
-    }
-
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController is EventViewController {
-            if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "EventVC") {
-                tabBarController.present(newVC, animated: true)
-                return false
-            }
-        }
         return true
     }
 
