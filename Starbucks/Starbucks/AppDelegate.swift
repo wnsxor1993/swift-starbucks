@@ -10,7 +10,8 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private(set) var remoteNotificationAtLunch: [AnyHashable: Any]?
+    private(set) var eventData: Event?
+    private(set) var data: fetchEvent = fetchEvent()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -35,8 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 }
             }, receiveValue: { object in
-                print(object)
-                self.remoteNotificationAtLunch = launchOptions?[.remoteNotification] as? [AnyHashable: Any]
+                self.eventData = object
+                self.data.setData(eventData: object)
+
             })
 
         return true

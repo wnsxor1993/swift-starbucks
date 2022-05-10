@@ -19,9 +19,7 @@ class EventViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        observeNotifications()
-        checkForNotificationAtLaunch()
-
+        setLabelText()
     }
 
     @IBAction func touchedConfirmButton(_ sender: Any) {
@@ -32,25 +30,9 @@ class EventViewController: UIViewController {
     @IBAction func touchedCloseButton(_ sender: Any) {
         self.dismiss(animated: true)
     }
-}
 
-private extension EventViewController {
-    func observeNotifications() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("eventData"), object: nil, queue: OperationQueue.main) { (data) in
-            guard let eventData = data.object as? Event else { return }
-            self.processNotification(eventData: eventData)
-        }
-    }
-
-    func checkForNotificationAtLaunch() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
-        if let notificationAtLaunch = appDelegate.remoteNotificationAtLunch, let notification = notificationAtLaunch["eventData"] as? Event {
-            self.processNotification(eventData: notification)
-        }
-    }
-
-    private func processNotification(eventData: Event) {
+    func setLabelText() {
+        guard let eventData = fetchEvent.data else { return }
         self.mainLabel.text = eventData.title
         self.periodLabel.text = eventData.range
         self.targetLabel.text = eventData.target
