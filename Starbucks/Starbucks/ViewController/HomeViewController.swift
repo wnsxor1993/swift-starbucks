@@ -9,22 +9,22 @@ import UIKit
 import Combine
 
 class HomeViewController: UIViewController {
-    
+
     private var isPresented = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestAPI()
+        // requestAPI()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showModal()
     }
-    
-    func showModal(){
+
+    func showModal() {
         guard UserDefaults.standard.bool(forKey: "isConfirmed") && !isPresented else { return }
-        
+
         showEventModal()
         isPresented = true
     }
