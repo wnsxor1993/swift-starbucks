@@ -20,4 +20,13 @@ class EventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+    @IBAction func touchedConfirmButton(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "isConfirmed")
+        self.dismiss(animated: true)
+    }
+
+    @IBAction func touchedCloseButton(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
 }

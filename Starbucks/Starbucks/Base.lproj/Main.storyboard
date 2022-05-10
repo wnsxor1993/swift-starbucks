@@ -160,6 +160,9 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="touchedConfirmButton:" destination="heW-Ba-X7Y" eventType="touchUpInside" id="sjs-Yt-2fO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvK-6U-gwY" userLabel="closeButton">
                                 <rect key="frame" x="210" y="718" width="160" height="32"/>
@@ -172,6 +175,9 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="touchedCloseButton:" destination="heW-Ba-X7Y" eventType="touchUpInside" id="t4t-vk-8iJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6WN-PC-Mqv"/>
