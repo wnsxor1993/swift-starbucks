@@ -15,8 +15,8 @@ class ContainerViewController: UITabBarController {
     func showEventModal() {
 
     }
-    
-    func checkLastLogin(){
+
+    func checkLastLogin() {
         let now = Date()
 
         let formatter = DateFormatter()
@@ -27,8 +27,7 @@ class ContainerViewController: UITabBarController {
         if diff.day == 0 {
             // UserDefault 값 확인
             UserDefaults.standard.set(now, forKey: "lastLogin")
-        }
-        else {
+        } else {
             }
     }
 
