@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B3E26F3C282958A300EB5F20 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E26F3B282958A300EB5F20 /* HomeViewController.swift */; };
+		B3E26F52282A01CA00EB5F20 /* starbucksEventImage.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */; };
 		D283BF7E2828B0D200A86761 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF7D2828B0D200A86761 /* AppDelegate.swift */; };
 		D283BF802828B0D200A86761 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF7F2828B0D200A86761 /* SceneDelegate.swift */; };
 		D283BF822828B0D200A86761 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF812828B0D200A86761 /* ContainerViewController.swift */; };
@@ -21,6 +22,7 @@
 		0962C08CB6FAFAA462024834 /* Pods_Starbucks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Starbucks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		242980AD85F9A3C5169109D8 /* Pods-Starbucks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.debug.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E26F3B282958A300EB5F20 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starbucksEventImage.png; sourceTree = "<group>"; };
 		B7A73CB1794AEDE897351AAD /* Pods-Starbucks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.release.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.release.xcconfig"; sourceTree = "<group>"; };
 		D283BF7A2828B0D200A86761 /* Starbucks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starbucks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D283BF7D2828B0D200A86761 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				D283BF7F2828B0D200A86761 /* SceneDelegate.swift */,
 				D283BF832828B0D200A86761 /* Main.storyboard */,
 				D283BF862828B0D300A86761 /* Assets.xcassets */,
+				B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */,
 				D283BF882828B0D300A86761 /* LaunchScreen.storyboard */,
 				D283BF8B2828B0D300A86761 /* Info.plist */,
 			);
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D283BF8A2828B0D300A86761 /* LaunchScreen.storyboard in Resources */,
+				B3E26F52282A01CA00EB5F20 /* starbucksEventImage.png in Resources */,
 				D283BF872828B0D300A86761 /* Assets.xcassets in Resources */,
 				D283BF852828B0D200A86761 /* Main.storyboard in Resources */,
 			);
