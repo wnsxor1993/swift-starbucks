@@ -24,15 +24,3 @@ struct Event: Codable {
     }
 
 }
-
-struct fetchEvent {
-    static var data: Event?
-
-    func setData(eventData: Event?) {
-        guard let eventData = eventData else {
-            return
-        }
-        fetchEvent.data = eventData
-        NotificationCenter.default.post(name: Notification.Name("event"), object: self)
-    }
-}

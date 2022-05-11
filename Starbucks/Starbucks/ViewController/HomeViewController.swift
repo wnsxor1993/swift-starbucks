@@ -11,11 +11,10 @@ import Combine
 class HomeViewController: UIViewController {
 
     private var isPresented = false
-    var fetchEventData = fetchEvent()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(showModal), name: Notification.Name("event"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showModal), name: Notification.Name("event"), object: EventDataManager.self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -23,14 +22,15 @@ class HomeViewController: UIViewController {
     }
 
     @objc
-    func showModal() {
-        guard UserDefaults.standard.bool(forKey: "isConfirmed") && !isPresented else { return }
-        showEventModal()
+    func showModal(_ notification: Notification) {
+        guard UserDefaults.standard.bool(forKey: "isConfirmed") && !isPresented, let eventData = notification.userInfo?["data"] as? Event else { return }
+        showEventModal(data: eventData)
         isPresented = true
     }
 
-    func showEventModal() {
+    func showEventModal(data: Event) {
         guard let nextVC = self.storyboard?.instantiateViewController(identifier: "EventVC") as? EventViewController else { return }
+        nextVC.setEventData(event: data)
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: true, completion: nil)
     }

@@ -8,6 +8,7 @@
 import UIKit
 
 class EventViewController: UIViewController {
+
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var periodLabel: UILabel!
     @IBOutlet weak var targetLabel: UILabel!
@@ -16,6 +17,8 @@ class EventViewController: UIViewController {
 
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
+
+    private var eventData: Event?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +34,15 @@ class EventViewController: UIViewController {
         self.dismiss(animated: true)
     }
 
+    func setEventData(event data: Event) {
+        self.eventData = data
+    }
+}
+
+private extension EventViewController {
+
     func setLabelText() {
-        guard let eventData = fetchEvent.data else { return }
+        guard let eventData = self.eventData else { return }
         self.mainLabel.text = eventData.title
         self.periodLabel.text = eventData.range
         self.targetLabel.text = eventData.target
