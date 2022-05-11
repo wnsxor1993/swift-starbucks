@@ -33,8 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 }
             }, receiveValue: { object in
-                let eventManager = EventDataManager()
-                eventManager.notifyEventData(eventData: object)
+                EventDataManager.shared.notifyEventData(eventData: object)
+//                let eventManager = EventDataManager()
+//                eventManager.notifyEventData(eventData: object)
             })
 
         publisher.cancel()
