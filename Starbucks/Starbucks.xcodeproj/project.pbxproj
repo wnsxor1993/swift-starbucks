@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B3E26F3C282958A300EB5F20 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E26F3B282958A300EB5F20 /* HomeViewController.swift */; };
 		B3E26F52282A01CA00EB5F20 /* starbucksEventImage.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */; };
+		B3E26F55282A26A300EB5F20 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E26F54282A26A300EB5F20 /* Event.swift */; };
+		D25DF748282A07C2007862A9 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DF747282A07C2007862A9 /* EventViewController.swift */; };
 		D283BF7E2828B0D200A86761 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF7D2828B0D200A86761 /* AppDelegate.swift */; };
 		D283BF802828B0D200A86761 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF7F2828B0D200A86761 /* SceneDelegate.swift */; };
 		D283BF822828B0D200A86761 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF812828B0D200A86761 /* ContainerViewController.swift */; };
@@ -23,7 +25,9 @@
 		242980AD85F9A3C5169109D8 /* Pods-Starbucks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.debug.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E26F3B282958A300EB5F20 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starbucksEventImage.png; sourceTree = "<group>"; };
+		B3E26F54282A26A300EB5F20 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B7A73CB1794AEDE897351AAD /* Pods-Starbucks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.release.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.release.xcconfig"; sourceTree = "<group>"; };
+		D25DF747282A07C2007862A9 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		D283BF7A2828B0D200A86761 /* Starbucks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starbucks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D283BF7D2828B0D200A86761 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D283BF7F2828B0D200A86761 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,8 +64,17 @@
 			children = (
 				D283BF812828B0D200A86761 /* ContainerViewController.swift */,
 				B3E26F3B282958A300EB5F20 /* HomeViewController.swift */,
+				D25DF747282A07C2007862A9 /* EventViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B3E26F53282A25CB00EB5F20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B3E26F54282A26A300EB5F20 /* Event.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D283BF712828B0D200A86761 = {
@@ -85,6 +98,7 @@
 		D283BF7C2828B0D200A86761 /* Starbucks */ = {
 			isa = PBXGroup;
 			children = (
+				B3E26F53282A25CB00EB5F20 /* Model */,
 				B3E26F502829FAF200EB5F20 /* ViewController */,
 				D283BF7D2828B0D200A86761 /* AppDelegate.swift */,
 				D283BF7F2828B0D200A86761 /* SceneDelegate.swift */,
@@ -239,9 +253,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25DF748282A07C2007862A9 /* EventViewController.swift in Sources */,
 				D283BF822828B0D200A86761 /* ContainerViewController.swift in Sources */,
 				D283BF7E2828B0D200A86761 /* AppDelegate.swift in Sources */,
 				D283BF802828B0D200A86761 /* SceneDelegate.swift in Sources */,
+				B3E26F55282A26A300EB5F20 /* Event.swift in Sources */,
 				B3E26F3C282958A300EB5F20 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
