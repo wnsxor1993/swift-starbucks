@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uQh-7Q-hX5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uQh-7Q-hX5">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -109,40 +109,41 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLZ-ON-roU" userLabel="mainLabel">
-                                <rect key="frame" x="167.66666666666666" y="59" width="55" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <rect key="frame" x="165.66666666666666" y="59" width="58.666666666666657" height="28"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                 <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8T-dl-RsQ" userLabel="periodLabel">
                                 <rect key="frame" x="109" y="270" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y29-Ra-7oo" userLabel="targetLabel">
                                 <rect key="frame" x="109" y="295" width="38" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KA-RS-PBQ" userLabel="contextLabel">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KA-RS-PBQ" userLabel="contextLabel">
                                 <rect key="frame" x="109" y="317" width="38" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fh-KA-r6c" userLabel="eventItemLabel">
                                 <rect key="frame" x="109" y="374" width="38" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUd-so-IMT" userLabel="confirmButton">
-                                <rect key="frame" x="20" y="738" width="160" height="32"/>
+                                <rect key="frame" x="20" y="730" width="160" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="0dn-YQ-XtD"/>
+                                    <constraint firstAttribute="height" constant="40" id="vuh-ip-GOQ"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="다시 보지 않기" cornerStyle="capsule">
@@ -154,9 +155,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvK-6U-gwY" userLabel="closeButton">
-                                <rect key="frame" x="210" y="738" width="160" height="32"/>
+                                <rect key="frame" x="210" y="730" width="160" height="40"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="I0O-ke-crR"/>
                                     <constraint firstAttribute="width" constant="160" id="kfm-og-poq"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
@@ -173,7 +175,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wLZ-ON-roU" firstAttribute="top" secondItem="4Jx-Cl-uUK" secondAttribute="top" constant="15" id="5nq-dF-CMj"/>
-                            <constraint firstItem="k8T-dl-RsQ" firstAttribute="trailing" secondItem="4Jx-Cl-uUK" secondAttribute="trailing" constant="50" id="5rW-pz-WPd"/>
+                            <constraint firstItem="k8T-dl-RsQ" firstAttribute="trailing" secondItem="4Jx-Cl-uUK" secondAttribute="trailing" constant="-25" id="5rW-pz-WPd"/>
                             <constraint firstItem="6WN-PC-Mqv" firstAttribute="bottom" secondItem="PUd-so-IMT" secondAttribute="bottom" constant="40" id="6eD-NJ-hNo"/>
                             <constraint firstItem="wLZ-ON-roU" firstAttribute="centerX" secondItem="8U1-IG-Ddk" secondAttribute="centerX" id="Aug-js-TQg"/>
                             <constraint firstItem="6WN-PC-Mqv" firstAttribute="bottom" secondItem="NvK-6U-gwY" secondAttribute="bottom" constant="40" id="BQy-LJ-J57"/>
@@ -184,7 +186,7 @@
                             <constraint firstItem="6KA-RS-PBQ" firstAttribute="top" secondItem="Y29-Ra-7oo" secondAttribute="top" constant="25" id="QLi-hZ-V78"/>
                             <constraint firstItem="4Jx-Cl-uUK" firstAttribute="leading" secondItem="6WN-PC-Mqv" secondAttribute="leading" id="Xyj-iM-c2t"/>
                             <constraint firstItem="6WN-PC-Mqv" firstAttribute="trailing" secondItem="4Jx-Cl-uUK" secondAttribute="trailing" id="Zqw-yr-DT8"/>
-                            <constraint firstItem="Y29-Ra-7oo" firstAttribute="top" secondItem="k8T-dl-RsQ" secondAttribute="top" constant="25" id="bJZ-fb-NCp"/>
+                            <constraint firstItem="Y29-Ra-7oo" firstAttribute="top" secondItem="k8T-dl-RsQ" secondAttribute="top" constant="27" id="bJZ-fb-NCp"/>
                             <constraint firstItem="Y29-Ra-7oo" firstAttribute="trailing" secondItem="k8T-dl-RsQ" secondAttribute="trailing" id="bm0-uR-SVe"/>
                             <constraint firstItem="Y29-Ra-7oo" firstAttribute="leading" secondItem="k8T-dl-RsQ" secondAttribute="leading" id="fnW-zu-LGq"/>
                             <constraint firstItem="PUd-so-IMT" firstAttribute="leading" secondItem="6WN-PC-Mqv" secondAttribute="leading" constant="20" id="jx4-si-dOO"/>
@@ -222,9 +224,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

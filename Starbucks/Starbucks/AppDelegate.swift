@@ -10,9 +10,6 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private(set) var eventData: Event?
-    private(set) var data: fetchEvent = fetchEvent()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         guard let url = URL(string: "https://public.codesquad.kr/jk/boostcamp/starbuckst-loading.json") else { return true }
@@ -36,10 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 }
             }, receiveValue: { object in
-                self.eventData = object
-                self.data.setData(eventData: object)
-
+                let eventManager = EventDataManager()
+                eventManager.notifyEventData(eventData: object)
             })
+
+        publisher.cancel()
 
         return true
     }
