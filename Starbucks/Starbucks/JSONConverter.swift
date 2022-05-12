@@ -8,23 +8,18 @@
 import Foundation
 import Combine
 
-struct Manager {
-    static let subjectData = PassthroughSubject<Codable, Never>()
-    
-    static func getEventData<T: Codable>(url: URL) -> T?{
+struct JSONConverter<T: Codable> {
+
+    static func getEventData(url: URL) {
         let request = URLRequest(url: url)
-        var decodedData: T?
 
         let event: AnyPublisher<Data, Error> = URLConnector.getRequest(request)
         event.decode(type: T.self, decoder: JSONDecoder())
             .sink(receiveCompletion: { _ in
                 print("receiveCompletion")
             }, receiveValue: { data in
-                decodedData = data
-                subjectData.send(data)
+                DataManager.subject.send(data)
             })
             .cancel()
-        
-        return decodedData
     }
 }

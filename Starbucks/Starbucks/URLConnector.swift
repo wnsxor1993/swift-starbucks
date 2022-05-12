@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-struct Agent {
+struct URLConnector {
 
     static func getRequest(_ request: URLRequest) -> AnyPublisher<Data, Error> {
         return URLSession.shared

@@ -17,11 +17,16 @@ class ContainerViewController: UITabBarController {
         super.viewDidLoad()
         addNotification()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 
     func addNotification() {
-        Manager.notifyEvent
+        DataManager.subject
             .sink(receiveValue: { data in
-                self.showModal(eventData: data)
+                guard let event = data as? Event else { return }
+                self.showModal(eventData: event)
             })
             .store(in: &cancellables)
     }

@@ -12,9 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        guard let url = URL(string: "https://public.codesquad.kr/jk/boostcamp/starbuckst-loading.json") else { return true }
-
-        Manager.getEventData(url: url)
+        guard let validURL = URL(string: "https://public.codesquad.kr/jk/boostcamp/starbuckst-loading.json") else { return true }
+        JSONConverter<Event>.getEventData(url: validURL)
 
         return true
     }

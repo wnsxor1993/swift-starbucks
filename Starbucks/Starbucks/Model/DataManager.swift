@@ -8,16 +8,7 @@
 import Foundation
 import Combine
 
-class EventDataManager {
+struct DataManager {
 
-    static let shared = EventDataManager()
-    let notifyEvent = PassthroughSubject<Event, Never>()
-
-    private init() { }
-
-    func notifyEventData(eventData: Event?) {
-        guard let eventData = eventData else { return }
-        // NotificationCenter.default.post(name: Notification.Name("event"), object: self, userInfo: ["data": eventData])
-        notifyEvent.send(eventData)
-    }
+    static let subject = PassthroughSubject<Codable, Never>()
 }
