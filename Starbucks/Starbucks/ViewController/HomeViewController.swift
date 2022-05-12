@@ -10,11 +10,20 @@ import Combine
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet var tableView: UITableView!
     private var isPresented = false
+
+//    let collectionViewNib = UINib(nibName: "CollectionViewController", bundle: .main)
+    let menuCollectionVC = CollectionViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(showModal), name: Notification.Name("event"), object: EventDataManager.self)
+
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: "tableCell")
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -34,4 +43,19 @@ class HomeViewController: UIViewController {
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: true, completion: nil)
     }
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as? TableViewCell else { return UITableViewCell()}
+        cell.contentView.addSubview(menuCollectionVC.view)
+        return cell
+
+    }
+
 }

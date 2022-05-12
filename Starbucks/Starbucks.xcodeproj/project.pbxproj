@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B370E260282CB56A006A4480 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370E25E282CB56A006A4480 /* CollectionViewController.swift */; };
+		B370E261282CB56A006A4480 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B370E25F282CB56A006A4480 /* CollectionViewController.xib */; };
+		B370E264282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370E262282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift */; };
+		B370E265282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B370E263282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib */; };
+		B370E267282CF20D006A4480 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370E266282CF20D006A4480 /* TableViewCell.swift */; };
 		B3E26F3C282958A300EB5F20 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E26F3B282958A300EB5F20 /* HomeViewController.swift */; };
 		B3E26F52282A01CA00EB5F20 /* starbucksEventImage.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */; };
 		B3E26F55282A26A300EB5F20 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E26F54282A26A300EB5F20 /* Event.swift */; };
@@ -24,6 +29,11 @@
 /* Begin PBXFileReference section */
 		0962C08CB6FAFAA462024834 /* Pods_Starbucks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Starbucks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		242980AD85F9A3C5169109D8 /* Pods-Starbucks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.debug.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.debug.xcconfig"; sourceTree = "<group>"; };
+		B370E25E282CB56A006A4480 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		B370E25F282CB56A006A4480 /* CollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
+		B370E262282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		B370E263282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		B370E266282CF20D006A4480 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B3E26F3B282958A300EB5F20 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starbucksEventImage.png; sourceTree = "<group>"; };
 		B3E26F54282A26A300EB5F20 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -61,9 +71,21 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B370E253282CAC36006A4480 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B370E25F282CB56A006A4480 /* CollectionViewController.xib */,
+				B370E262282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift */,
+				B370E263282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib */,
+				B370E266282CF20D006A4480 /* TableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B3E26F502829FAF200EB5F20 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B370E25E282CB56A006A4480 /* CollectionViewController.swift */,
 				D283BF812828B0D200A86761 /* ContainerViewController.swift */,
 				B3E26F3B282958A300EB5F20 /* HomeViewController.swift */,
 				D25DF747282A07C2007862A9 /* EventViewController.swift */,
@@ -101,6 +123,7 @@
 		D283BF7C2828B0D200A86761 /* Starbucks */ = {
 			isa = PBXGroup;
 			children = (
+				B370E253282CAC36006A4480 /* View */,
 				B3E26F53282A25CB00EB5F20 /* Model */,
 				B3E26F502829FAF200EB5F20 /* ViewController */,
 				D283BF7D2828B0D200A86761 /* AppDelegate.swift */,
@@ -183,6 +206,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B370E265282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib in Resources */,
+				B370E261282CB56A006A4480 /* CollectionViewController.xib in Resources */,
 				D283BF8A2828B0D300A86761 /* LaunchScreen.storyboard in Resources */,
 				B3E26F52282A01CA00EB5F20 /* starbucksEventImage.png in Resources */,
 				D283BF872828B0D300A86761 /* Assets.xcassets in Resources */,
@@ -257,8 +282,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D25DF748282A07C2007862A9 /* EventViewController.swift in Sources */,
+				B370E264282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift in Sources */,
 				D283BF822828B0D200A86761 /* ContainerViewController.swift in Sources */,
+				B370E260282CB56A006A4480 /* CollectionViewController.swift in Sources */,
 				D23AF6D1282B9BBB00F53C5F /* EventDataManager.swift in Sources */,
+				B370E267282CF20D006A4480 /* TableViewCell.swift in Sources */,
 				D283BF7E2828B0D200A86761 /* AppDelegate.swift in Sources */,
 				D283BF802828B0D200A86761 /* SceneDelegate.swift in Sources */,
 				B3E26F55282A26A300EB5F20 /* Event.swift in Sources */,
@@ -338,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -392,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
