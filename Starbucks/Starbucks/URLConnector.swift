@@ -10,7 +10,7 @@ import Combine
 
 struct Agent {
 
-    static func networkRequest(_ request: URLRequest) -> AnyPublisher<Data, Error> {
+    static func getRequest(_ request: URLRequest) -> AnyPublisher<Data, Error> {
         return URLSession.shared
             .dataTaskPublisher(for: request)
             .subscribe(on: DispatchQueue.global(qos: .background))
