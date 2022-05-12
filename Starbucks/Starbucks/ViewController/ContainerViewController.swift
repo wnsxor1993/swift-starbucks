@@ -12,7 +12,6 @@ class ContainerViewController: UITabBarController {
 
     private var isPresented = false
     private var cancellables = Set<AnyCancellable>()
-//    private var cancellable: AnyCancellable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,16 +19,11 @@ class ContainerViewController: UITabBarController {
     }
 
     func addNotification() {
-        EventDataManager.shared.notifyEvent
+        Manager.notifyEvent
             .sink(receiveValue: { data in
                 self.showModal(eventData: data)
             })
             .store(in: &cancellables)
-//        self.cancellable = NotificationCenter.default.publisher(for: Notification.Name("event"))
-//            .sink(receiveValue: { data in
-//                guard let eventData = data.userInfo?["data"] as? Event else { return }
-//                self.showModal(eventData: eventData)
-//            })
     }
 
     func showModal(eventData: Event) {
