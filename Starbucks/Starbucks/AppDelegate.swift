@@ -12,32 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        guard let url = URL(string: "https://public.codesquad.kr/jk/boostcamp/starbuckst-loading.json") else { return true }
-
-        let publisher = URLSession.shared
-            .dataTaskPublisher(for: url)
-            .subscribe(on: DispatchQueue.global(qos: .background))
-            .receive(on: DispatchQueue.main)
-            .tryMap { data, response -> Data in
-                guard let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
-                    throw URLError(.badServerResponse)
-                }
-                return data
-            }
-            .decode(type: Event.self, decoder: JSONDecoder())
-            .sink(receiveCompletion: { completion in
-                if case .failure(let err) = completion {
-                    print("failed with \(err)")
-                } else {
-                    print("Receive completion \(completion)")
-
-                }
-            }, receiveValue: { object in
-                let eventManager = EventDataManager()
-                eventManager.notifyEventData(eventData: object)
-            })
-
-        publisher.cancel()
+        guard let validURL = URL(string: "https://public.codesquad.kr/jk/boostcamp/starbuckst-loading.json") else { return true }
+        JSONConverter<Event>.getEventData(url: validURL)
 
         return true
     }
