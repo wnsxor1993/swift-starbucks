@@ -11,9 +11,9 @@ import Combine
 class HomeViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var tableViewCell: TableViewCell!
     private var isPresented = false
 
-//    let collectionViewNib = UINib(nibName: "CollectionViewController", bundle: .main)
     let menuCollectionVC = CollectionViewController()
 
     override func viewDidLoad() {
@@ -22,8 +22,7 @@ class HomeViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: "tableCell")
-
+        tableView.estimatedRowHeight = 150
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -52,10 +51,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as? TableViewCell else { return UITableViewCell()}
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         cell.contentView.addSubview(menuCollectionVC.view)
+
+        menuCollectionVC.view.translatesAutoresizingMaskIntoConstraints = false
+        menuCollectionVC.view.widthAnchor.constraint(equalTo: cell.contentView.widthAnchor).isActive = true
+        menuCollectionVC.view.heightAnchor.constraint(equalTo: cell.contentView.heightAnchor).isActive = true
+        menuCollectionVC.view.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
+        menuCollectionVC.view.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor).isActive = true
+
         return cell
 
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.estimatedRowHeight
     }
 
 }

@@ -17,6 +17,7 @@ class CollectionViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         registerCell()
+        collectionView.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId)
 
     }
     func registerCell() {
@@ -38,6 +39,13 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
 
         return cell
 
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionHeaderView.headerId, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
+
+        return header
     }
 
 }
