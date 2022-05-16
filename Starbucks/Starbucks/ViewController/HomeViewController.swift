@@ -10,34 +10,13 @@ import Combine
 
 class HomeViewController: UIViewController {
 
-
     @IBOutlet var collectionView: UICollectionView!
 
     let data = ["9200000002760", "25", "9200000002487", "9300000003067", "9300000003524"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(showModal), name: Notification.Name("event"), object: EventDataManager.self)
-
         configureCollectionView()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    @objc
-    func showModal(_ notification: Notification) {
-        guard UserDefaults.standard.bool(forKey: "showModal"), let eventData = notification.userInfo?["data"] as? Event else { return }
-        showEventModal(data: eventData)
-    }
-
-    func showEventModal(data: Event) {
-        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "EventVC") as? EventViewController else { return }
-        nextVC.setEventData(event: data)
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true, completion: nil)
-
     }
 
     func configureCollectionView() {

@@ -10,14 +10,13 @@ import Combine
 
 class ContainerViewController: UITabBarController {
 
-    private var isPresented = false
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addNotification()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -32,9 +31,9 @@ class ContainerViewController: UITabBarController {
     }
 
     func showModal(eventData: Event) {
-        guard UserDefaults.standard.bool(forKey: "isConfirmed") && !isPresented else { return }
+        guard UserDefaults.standard.bool(forKey: "showModal") else { return }
         showEventModal(data: eventData)
-        isPresented = true
+
     }
 
     func showEventModal(data: Event) {
