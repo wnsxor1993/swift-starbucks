@@ -12,8 +12,6 @@ class HomeViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
 
-    private var isPresented = false
-
     let data = ["9200000002760", "25", "9200000002487", "9300000003067", "9300000003524"]
 
     override func viewDidLoad() {
@@ -29,9 +27,8 @@ class HomeViewController: UIViewController {
 
     @objc
     func showModal(_ notification: Notification) {
-        guard UserDefaults.standard.bool(forKey: "isConfirmed") && !isPresented, let eventData = notification.userInfo?["data"] as? Event else { return }
+        guard UserDefaults.standard.bool(forKey: "showModal"), let eventData = notification.userInfo?["data"] as? Event else { return }
         showEventModal(data: eventData)
-        isPresented = true
     }
 
     func showEventModal(data: Event) {
