@@ -10,19 +10,17 @@ import Combine
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet var tableViewCell: TableViewCell!
+    @IBOutlet var collectionView: UICollectionView!
+
     private var isPresented = false
 
-    let menuCollectionVC = CollectionViewController()
+    let data = ["9200000002760", "25", "9200000002487", "9300000003067", "9300000003524"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(showModal), name: Notification.Name("event"), object: EventDataManager.self)
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.estimatedRowHeight = 150
+        configureCollectionView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -42,30 +40,63 @@ class HomeViewController: UIViewController {
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: true, completion: nil)
     }
-}
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    func configureCollectionView() {
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
+
+        let nibName = UINib(nibName: "RecommendItemCollectionViewCell", bundle: .main)
+        collectionView.register(nibName, forCellWithReuseIdentifier: "ItemCell")
+
+        collectionView.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId)
+        collectionView.collectionViewLayout = compositionLayout()
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func compositionLayout() -> UICollectionViewCompositionalLayout {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-        cell.contentView.addSubview(menuCollectionVC.view)
+        let cellSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: cellSize)
 
-        menuCollectionVC.view.translatesAutoresizingMaskIntoConstraints = false
-        menuCollectionVC.view.widthAnchor.constraint(equalTo: cell.contentView.widthAnchor).isActive = true
-        menuCollectionVC.view.heightAnchor.constraint(equalTo: cell.contentView.heightAnchor).isActive = true
-        menuCollectionVC.view.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
-        menuCollectionVC.view.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor).isActive = true
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+
+        section.boundarySupplementaryItems = [header]
+
+        let layout = UICollectionViewCompositionalLayout(section: section)
+
+        return layout
+    }
+}
+
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 4
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return data.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? RecommendItemCollectionViewCell else { return UICollectionViewCell()}
+
+        cell.itemImageView.image = UIImage(systemName: "x.circle")
+        cell.nameLabel.text = data[indexPath.item]
 
         return cell
-
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.estimatedRowHeight
-    }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-}
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
+        return header
+    }
+ }
