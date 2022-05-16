@@ -18,18 +18,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let diff = Calendar.current.dateComponents([.day], from: now, to: lastLogin)
             if diff.day != 0 {
                 // 다른날
-                UserDefaults.standard.set(true, forKey: "isConfirmed")
+                UserDefaults.standard.set(true, forKey: "showModal")
             }
 
         } else {
-            UserDefaults.standard.set(true, forKey: "isConfirmed")
-            }
+            UserDefaults.standard.set(true, forKey: "showModal")
+        }
+
+        UserDefaults.standard.set(Date(), forKey: "lastLogin")
 
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
-        UserDefaults.standard.set(Date(), forKey: "lastLogin")
+
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {

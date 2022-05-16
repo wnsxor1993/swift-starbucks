@@ -27,7 +27,7 @@ class EventViewController: UIViewController {
     }
 
     @IBAction func touchedConfirmButton(_ sender: Any) {
-        UserDefaults.standard.set(false, forKey: "isConfirmed")
+        UserDefaults.standard.set(false, forKey: "showModal")
         self.dismiss(animated: true)
     }
 
