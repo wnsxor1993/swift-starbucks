@@ -68,6 +68,7 @@ class HomeViewController: UIViewController {
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
 
         section.boundarySupplementaryItems = [header]
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15.0, bottom: 0, trailing: 0)
 
         let layout = UICollectionViewCompositionalLayout(section: section)
 
