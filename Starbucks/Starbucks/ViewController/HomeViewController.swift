@@ -10,6 +10,7 @@ import Combine
 
 class HomeViewController: UIViewController {
 
+
     @IBOutlet var collectionView: UICollectionView!
 
     let data = ["9200000002760", "25", "9200000002487", "9300000003067", "9300000003524"]
@@ -36,6 +37,7 @@ class HomeViewController: UIViewController {
         nextVC.setEventData(event: data)
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: true, completion: nil)
+
     }
 
     func configureCollectionView() {
