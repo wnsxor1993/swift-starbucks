@@ -5,12 +5,13 @@ iOS 클래스 프로젝트 - 스타벅스 앱
 
 ### 프로젝트 진행 상황
 
-[Notion]: https://www.notion.so/Starbucks-App-7440eefcd13c4856bfcad20f60d9be85
+[👉 Notion](https://www.notion.so/Starbucks-App-7440eefcd13c4856bfcad20f60d9be85)
 
-#### 팀원
+### 팀원
 
-[푸코]: https://github.com/wnsxor1993
-[체즈]: https://github.com/asqw887
+[👨‍💻푸코](https://github.com/wnsxor1993) <br>
+
+[👨‍💻체즈](https://github.com/asqw887)
 
 <br>
 
