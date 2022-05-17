@@ -33,7 +33,6 @@ class ContainerViewController: UITabBarController {
     func showModal(eventData: Event) {
         guard UserDefaults.standard.bool(forKey: "showModal") else { return }
         showEventModal(data: eventData)
-
     }
 
     func showEventModal(data: Event) {

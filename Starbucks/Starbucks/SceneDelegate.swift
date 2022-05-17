@@ -15,8 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let now = Date()
         if let lastLogin =  UserDefaults.standard.object(forKey: "lastLogin") as? Date {
-            let diff = Calendar.current.dateComponents([.day], from: now, to: lastLogin)
-            if diff.day != 0 {
+
+            if Calendar.current.dateComponents([.day], from: now) != Calendar.current.dateComponents([.day], from: lastLogin) {
                 // 다른날
                 UserDefaults.standard.set(true, forKey: "showModal")
             }
