@@ -9,9 +9,19 @@ import UIKit
 
 class MainEventCell: UICollectionViewCell {
 
+    @IBOutlet var mainImageView: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+
+    func setImage(_ image: UIImage?) {
+        guard let image = image else {
+            return
+        }
+        mainImageView.image = image
+
     }
 
 }
