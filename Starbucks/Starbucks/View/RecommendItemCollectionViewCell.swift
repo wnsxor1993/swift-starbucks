@@ -11,9 +11,14 @@ class RecommendItemCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var itemImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var rankLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+
+    func setRank(rank: Int) {
+        rankLabel.text = "\(rank+1)"
     }
 
 }

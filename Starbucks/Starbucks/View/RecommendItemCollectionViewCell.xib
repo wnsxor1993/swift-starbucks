@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,8 +24,17 @@
                             <constraint firstAttribute="width" constant="140" id="8Z1-wX-kn1"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aro-OC-sae">
-                        <rect key="frame" x="5" y="153" width="130" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGx-Nd-zWL">
+                        <rect key="frame" x="10" y="149" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" systemColor="systemGreenColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aro-OC-sae">
+                        <rect key="frame" x="14" y="149" width="111" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="RQB-HX-EyY"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -33,20 +43,27 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="aro-OC-sae" firstAttribute="top" secondItem="5k8-dC-uKX" secondAttribute="bottom" constant="7" id="6up-A4-DHp"/>
-                <constraint firstAttribute="trailing" secondItem="aro-OC-sae" secondAttribute="trailing" constant="5" id="Ue4-bj-aF0"/>
+                <constraint firstItem="aro-OC-sae" firstAttribute="top" secondItem="KGx-Nd-zWL" secondAttribute="top" id="3FO-d9-MuD"/>
+                <constraint firstAttribute="trailing" secondItem="aro-OC-sae" secondAttribute="trailing" constant="15" id="7gF-nY-ILU"/>
                 <constraint firstItem="5k8-dC-uKX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="a39-pH-yx0"/>
+                <constraint firstItem="aro-OC-sae" firstAttribute="leading" secondItem="KGx-Nd-zWL" secondAttribute="trailing" constant="4" id="bVb-yC-RwY"/>
                 <constraint firstItem="5k8-dC-uKX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fhh-j6-XlS"/>
-                <constraint firstAttribute="bottom" secondItem="aro-OC-sae" secondAttribute="bottom" constant="13" id="gN4-97-y65"/>
                 <constraint firstAttribute="trailing" secondItem="5k8-dC-uKX" secondAttribute="trailing" id="lMN-2P-xJV"/>
-                <constraint firstItem="aro-OC-sae" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="sBY-Ta-Ukc"/>
+                <constraint firstItem="KGx-Nd-zWL" firstAttribute="top" secondItem="5k8-dC-uKX" secondAttribute="bottom" constant="3" id="rgC-Vs-q0s"/>
+                <constraint firstItem="KGx-Nd-zWL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="yrY-2U-WjS"/>
             </constraints>
             <size key="customSize" width="140" height="174"/>
             <connections>
                 <outlet property="itemImageView" destination="5k8-dC-uKX" id="hbv-KY-PSa"/>
                 <outlet property="nameLabel" destination="aro-OC-sae" id="Q6m-WK-j6a"/>
+                <outlet property="rankLabel" destination="KGx-Nd-zWL" id="TD2-TV-BEI"/>
             </connections>
             <point key="canvasLocation" x="202.89855072463769" y="116.51785714285714"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
