@@ -9,9 +9,13 @@ import UIKit
 
 class WhatsNewCell: UICollectionViewCell {
 
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var contentLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        imageView.layer.cornerRadius = 5
     }
 
 }
