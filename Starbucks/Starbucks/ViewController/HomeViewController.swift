@@ -15,7 +15,15 @@ class HomeViewController: UIViewController {
     let homeDataManager = HomeViewDataManager()
     private var cancellables = Set<AnyCancellable>()
 
-    let data = ["9200000002760", "25", "9200000002487", "9300000003067", "9300000003524"]
+    let data = ["아이스 카페 아메리카노", "아이스 카페 라떼", "아이스 자몽 허니 블랙티", "클래식 스콘", "미니 클래식 스콘"]
+
+    enum Section: Int, CaseIterable {
+        case recommendMenu = 0
+        case mainEvent
+        case whatsNew
+        case popularMenu
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,32 +46,91 @@ class HomeViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
 
-        let nibName = UINib(nibName: "RecommendItemCollectionViewCell", bundle: .main)
-        collectionView.register(nibName, forCellWithReuseIdentifier: "ItemCell")
+        let itemNib = UINib(nibName: "RecommendItemCollectionViewCell", bundle: .main)
+        let mainEventNib = UINib(nibName: "MainEventCell", bundle: .main)
+        let whatsNewNib = UINib(nibName: "WhatsNewCell", bundle: .main)
 
+        collectionView.register(itemNib, forCellWithReuseIdentifier: "ItemCell")
         collectionView.register(CollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId)
+        collectionView.register(mainEventNib, forCellWithReuseIdentifier: "MainEventCell")
+        collectionView.register(whatsNewNib, forCellWithReuseIdentifier: "WhatsNewCell")
+        collectionView.register(whatsNewHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: whatsNewHeaderView.headerId)
+
         collectionView.collectionViewLayout = compositionLayout()
     }
 
     func compositionLayout() -> UICollectionViewCompositionalLayout {
 
-        let cellSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: cellSize)
+        let layout = UICollectionViewCompositionalLayout { (section, _) -> NSCollectionLayoutSection? in
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
+            guard let section = Section(rawValue: section) else { return nil }
+            switch section {
+            case .recommendMenu:
+                let cellSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: cellSize)
 
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
 
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuous
 
-        section.boundarySupplementaryItems = [header]
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15.0, bottom: 0, trailing: 0)
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
+                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
 
-        let layout = UICollectionViewCompositionalLayout(section: section)
+                section.boundarySupplementaryItems = [header]
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15.0, bottom: 30, trailing: 0)
 
+                return section
+
+            case .mainEvent:
+                let cellSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: cellSize)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.6))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                let section = NSCollectionLayoutSection(group: group)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15.0, bottom: 30, trailing: 15.0)
+                return section
+
+            case .whatsNew:
+                let cellSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: cellSize)
+
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuous
+
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50.0))
+                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+                section.boundarySupplementaryItems = [header]
+
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15.0, bottom: 30, trailing: 0)
+
+                return section
+
+            case .popularMenu:
+                let cellSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: cellSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15.0)
+
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
+
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuous
+
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
+                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+
+                section.boundarySupplementaryItems = [header]
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15.0, bottom: 30, trailing: 0)
+
+                return section
+
+            }
+        }
         return layout
     }
 }
@@ -71,25 +138,89 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return Section.allCases.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+
+        guard let section = Section(rawValue: section) else { return 0 }
+
+        switch section {
+        case .recommendMenu:
+            return data.count
+
+        case .mainEvent:
+            return 1
+
+        case .whatsNew:
+            return 5
+
+        case .popularMenu:
+            return data.count
+
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? RecommendItemCollectionViewCell else { return UICollectionViewCell()}
 
-        cell.itemImageView.image = UIImage(systemName: "x.circle")
-        cell.nameLabel.text = data[indexPath.item]
+        guard let section = Section(rawValue: indexPath.section) else { return UICollectionViewCell() }
+        switch section {
 
-        return cell
+        case .recommendMenu:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? RecommendItemCollectionViewCell else { return UICollectionViewCell()}
+
+            cell.itemImageView.image = UIImage(systemName: "x.circle")
+            cell.nameLabel.text = data[indexPath.item]
+
+            return cell
+        case .mainEvent:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainEventCell", for: indexPath) as? MainEventCell else { return UICollectionViewCell() }
+
+            cell.mainImageView.image = UIImage(named: "starbucksEventImage")
+            return cell
+
+        case .whatsNew:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WhatsNewCell", for: indexPath) as? WhatsNewCell else { return UICollectionViewCell() }
+
+            cell.imageView.image = UIImage(named: "starbucksEventImage")
+            cell.titleLabel.text = "돌체라떼 Free for 준택"
+            cell.contentLabel.text = "준택이에게 돌체라떼 평생 무료 이용권을 드립니다^0^"
+
+            return cell
+
+        case .popularMenu:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? RecommendItemCollectionViewCell else { return UICollectionViewCell()}
+
+            cell.itemImageView.image = UIImage(systemName: "x.circle")
+            cell.nameLabel.text = data[indexPath.item]
+            cell.setRank(rank: indexPath.item)
+
+            return cell
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
-        return header
+        guard let section = Section(rawValue: indexPath.section) else { return UICollectionReusableView() }
+
+        switch section {
+
+        case .recommendMenu:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
+            return header
+
+        case .whatsNew:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: whatsNewHeaderView.headerId, for: indexPath) as? whatsNewHeaderView else { return UICollectionReusableView() }
+            return header
+
+        case .popularMenu:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
+            header.setTimeLabel(time: "주중 오후 4시 기준")
+            return header
+
+        default:
+            return UICollectionReusableView()
+        }
     }
+
  }

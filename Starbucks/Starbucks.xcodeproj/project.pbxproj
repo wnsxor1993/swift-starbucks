@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B35B6F2928338CEB00A08DC5 /* WhatsNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35B6F2728338CEB00A08DC5 /* WhatsNewCell.swift */; };
+		B35B6F2A28338CEB00A08DC5 /* WhatsNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35B6F2828338CEB00A08DC5 /* WhatsNewCell.xib */; };
+		B35B6F2C28338F0900A08DC5 /* whatsNewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35B6F2B28338F0900A08DC5 /* whatsNewHeaderView.swift */; };
 		B370E264282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370E262282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift */; };
 		B370E265282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B370E263282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib */; };
 		B370E269282D02A7006A4480 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370E268282D02A7006A4480 /* CollectionHeaderView.swift */; };
+		B3907A1428337ECF00A96679 /* MainEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3907A1228337ECF00A96679 /* MainEventCell.swift */; };
+		B3907A1528337ECF00A96679 /* MainEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3907A1328337ECF00A96679 /* MainEventCell.xib */; };
 		B3E26F3C282958A300EB5F20 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E26F3B282958A300EB5F20 /* HomeViewController.swift */; };
 		B3E26F52282A01CA00EB5F20 /* starbucksEventImage.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */; };
 		B3E26F55282A26A300EB5F20 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E26F54282A26A300EB5F20 /* Event.swift */; };
@@ -32,9 +37,14 @@
 /* Begin PBXFileReference section */
 		0962C08CB6FAFAA462024834 /* Pods_Starbucks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Starbucks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		242980AD85F9A3C5169109D8 /* Pods-Starbucks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.debug.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.debug.xcconfig"; sourceTree = "<group>"; };
+		B35B6F2728338CEB00A08DC5 /* WhatsNewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WhatsNewCell.swift; path = Starbucks/View/WhatsNewCell.swift; sourceTree = SOURCE_ROOT; };
+		B35B6F2828338CEB00A08DC5 /* WhatsNewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WhatsNewCell.xib; path = Starbucks/View/WhatsNewCell.xib; sourceTree = SOURCE_ROOT; };
+		B35B6F2B28338F0900A08DC5 /* whatsNewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whatsNewHeaderView.swift; sourceTree = "<group>"; };
 		B370E262282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		B370E263282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		B370E268282D02A7006A4480 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
+		B3907A1228337ECF00A96679 /* MainEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEventCell.swift; sourceTree = "<group>"; };
+		B3907A1328337ECF00A96679 /* MainEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainEventCell.xib; sourceTree = "<group>"; };
 		B3E26F3B282958A300EB5F20 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starbucksEventImage.png; sourceTree = "<group>"; };
 		B3E26F54282A26A300EB5F20 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -83,6 +93,11 @@
 				B370E268282D02A7006A4480 /* CollectionHeaderView.swift */,
 				B370E262282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift */,
 				B370E263282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib */,
+				B3907A1228337ECF00A96679 /* MainEventCell.swift */,
+				B3907A1328337ECF00A96679 /* MainEventCell.xib */,
+				B35B6F2728338CEB00A08DC5 /* WhatsNewCell.swift */,
+				B35B6F2828338CEB00A08DC5 /* WhatsNewCell.xib */,
+				B35B6F2B28338F0900A08DC5 /* whatsNewHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,8 +233,10 @@
 				B370E265282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib in Resources */,
 				D283BF8A2828B0D300A86761 /* LaunchScreen.storyboard in Resources */,
 				B3E26F52282A01CA00EB5F20 /* starbucksEventImage.png in Resources */,
+				B3907A1528337ECF00A96679 /* MainEventCell.xib in Resources */,
 				D283BF872828B0D300A86761 /* Assets.xcassets in Resources */,
 				D283BF852828B0D200A86761 /* Main.storyboard in Resources */,
+				B35B6F2A28338CEB00A08DC5 /* WhatsNewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B35B6F2928338CEB00A08DC5 /* WhatsNewCell.swift in Sources */,
 				D25DF748282A07C2007862A9 /* EventViewController.swift in Sources */,
 				B370E269282D02A7006A4480 /* CollectionHeaderView.swift in Sources */,
 				B370E264282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift in Sources */,
@@ -300,6 +318,8 @@
 				D25DEB67282CB41F00086E6C /* URLConnector.swift in Sources */,
 				D26D5A3328349C1300178549 /* HomeViewDataManager.swift in Sources */,
 				B3E26F55282A26A300EB5F20 /* Event.swift in Sources */,
+				B35B6F2C28338F0900A08DC5 /* whatsNewHeaderView.swift in Sources */,
+				B3907A1428337ECF00A96679 /* MainEventCell.swift in Sources */,
 				D25DEB69282CB47E00086E6C /* JSONConverter.swift in Sources */,
 				B3E26F3C282958A300EB5F20 /* HomeViewController.swift in Sources */,
 				D27081F128337EA70036A94B /* HomeViewData.swift in Sources */,
