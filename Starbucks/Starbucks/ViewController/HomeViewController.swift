@@ -12,6 +12,9 @@ class HomeViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
 
+    let homeDataManager = HomeViewDataManager()
+    private var cancellables = Set<AnyCancellable>()
+
     let data = ["아이스 카페 아메리카노", "아이스 카페 라떼", "아이스 자몽 허니 블랙티", "클래식 스콘", "미니 클래식 스콘"]
 
     enum Section: Int, CaseIterable {
@@ -24,7 +27,18 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        postAllDetailDatas()
         configureCollectionView()
+    }
+
+    func postAllDetailDatas() {
+        self.homeDataManager.recommendInfoData
+            .sink(receiveValue: { data in
+                if let name = data.view?.productName {
+                    print(name)
+                }
+            })
+            .store(in: &cancellables)
     }
 
     func configureCollectionView() {
