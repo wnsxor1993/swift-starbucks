@@ -22,4 +22,16 @@ struct JSONConverter<T: Codable> {
             })
             .cancel()
     }
+
+    static func getHomeData(url: URLRequest, handler: @escaping (T) -> Void) {
+
+        let event: AnyPublisher<Data, Error> = URLConnector.getRequest(url)
+        event.decode(type: T.self, decoder: JSONDecoder())
+            .sink(receiveCompletion: { error in
+                print(error)
+            }, receiveValue: { data in
+                handler(data)
+            })
+            .cancel()
+    }
 }
