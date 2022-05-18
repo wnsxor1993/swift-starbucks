@@ -33,10 +33,14 @@ class HomeViewController: UIViewController {
 
     func postAllDetailDatas() {
         self.homeDataManager.recommendInfoData
-            .sink(receiveValue: { data in
-                if let name = data.view?.productName {
-                    print(name)
-                }
+            .sink(receiveValue: { _ in
+                self.collectionView.reloadData()
+            })
+            .store(in: &cancellables)
+
+        self.homeDataManager.recommendImageData
+            .sink(receiveValue: { _ in
+                self.collectionView.reloadData()
             })
             .store(in: &cancellables)
     }
@@ -147,7 +151,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         switch section {
         case .recommendMenu:
-            return data.count
+            return homeDataManager.recommandImage.count // data.count
 
         case .mainEvent:
             return 1
@@ -169,8 +173,12 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         case .recommendMenu:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? RecommendItemCollectionViewCell else { return UICollectionViewCell()}
 
-            cell.itemImageView.image = UIImage(systemName: "x.circle")
-            cell.nameLabel.text = data[indexPath.item]
+            cell.itemImageView.image = UIImage(data: homeDataManager.recommandImage[indexPath.item])
+            cell.nameLabel.text = homeDataManager.recommandInfo[indexPath.item]
+
+//            cell.itemImageView.image = UIImage(systemName: "x.circle")
+//            cell.nameLabel.text = homeDataManager.recommandInfo[indexPath.item]
+//            cell.nameLabel.text = data[indexPath.item]
 
             return cell
         case .mainEvent:

@@ -11,7 +11,11 @@ import Combine
 class HomeViewDataManager {
 
     let entireData = PassthroughSubject<HomeViewData, Never>()
-    let recommendInfoData = PassthroughSubject<Products, Never>()
+    let recommendInfoData = PassthroughSubject<RecommandProductName, Never>()
+    let recommendImageData = PassthroughSubject<RecommandProductImage, Never>()
+
+    private(set) var recommandInfo = [String]()
+    private(set) var recommandImage = [Data]()
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -22,7 +26,7 @@ class HomeViewDataManager {
 }
 
 private extension HomeViewDataManager {
-    
+
     func getEntiredData() {
         guard let validURL = URL(string: URLValue.homeEntireData.getRawValue()) else { return }
 
@@ -35,34 +39,64 @@ private extension HomeViewDataManager {
     }
 
     func getRecommendInfoData() {
-        guard let productInfo = URL(string: URLValue.recommendData.getRawValue() + Query.recommendInfo.getRawValue()) else { return }
+        guard let productInfo = URL(string: URLValue.recommendData.getRawValue() + Query.recommendInfo.getRawValue()), let productImage = URL(string: URLValue.recommendData.getRawValue() + Query.recommendImage.getRawValue()) else { return }
+
+        let method = HTTPMethod.post.getRawValue()
+        let encode = HTTPHeader.urlEncoded.getRawValue()
 
         var productInfoRequest = URLRequest(url: productInfo)
-        productInfoRequest.httpMethod = HTTPMethod.post.getRawValue()
-        productInfoRequest.setValue(HTTPHeader.urlEncoded.getRawValue(), forHTTPHeaderField: "Content-Type")
+        productInfoRequest.httpMethod = method
+        productInfoRequest.setValue(encode, forHTTPHeaderField: "Content-Type")
+
+        var productImageRequest = URLRequest(url: productImage)
+        productImageRequest.httpMethod = method
+        productImageRequest.setValue(encode, forHTTPHeaderField: "Content-Type")
 
         self.entireData
             .sink(receiveValue: { homeData in
-                homeData.yourRecommand.products.forEach {
-                    guard let data = self.setHttpBody(value: $0) else { return }
-                    productInfoRequest.httpBody = data
+                homeData.yourRecommand.products.forEach { productNumber in
+                    guard let infoData = self.setHttpBody(value: productNumber, body: .recommendInfo), let imageData = self.setHttpBody(value: productNumber, body: .recommendImage) else { return }
+                    productInfoRequest.httpBody = infoData
+                    productImageRequest.httpBody = imageData
 
-                    JSONConverter<Products>.getHomeData(url: productInfoRequest, handler: { data in
+                    JSONConverter<RecommandProductName>.getHomeData(url: productInfoRequest, handler: { data in
+                        if let name = data.view?.productName {
+                            self.recommandInfo.append(name)
+                        }
+
                         self.recommendInfoData.send(data)
+                    })
+
+                    JSONConverter<RecommandProductImage>.getHomeData(url: productImageRequest, handler: { data in
+                        if let url = data.file?.first?.imageUrl {
+                            guard let imgData = self.makeDataImage(url: url) else { return }
+                            self.recommandImage.append(imgData)
+                        }
+
+                        self.recommendImageData.send(data)
                     })
                 }
             })
             .store(in: &cancellables)
     }
-    
-    func setHttpBody(value: Any) -> Data? {
-        let infoParam: [String: Any] = [HTTPBody.recommendInfo.getRawValue(): value]
+
+    func setHttpBody(value: Any, body: HTTPBody) -> Data? {
+        let infoParam: [String: Any] = [body.getRawValue(): value]
 
         let formDataString = (infoParam.compactMap({ (key, value) -> String in
             return "\(key)=\(value)"
         })).joined()
 
         return formDataString.data(using: .utf8)
+    }
+
+    func makeDataImage(url: URL) -> Data? {
+        do {
+            let data = try Data(contentsOf: url)
+            return data
+        } catch {
+           return nil
+        }
     }
 }
 

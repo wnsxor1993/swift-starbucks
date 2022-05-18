@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Products: Codable {
+struct RecommandProductName: Codable {
     let view: Detail?
 
     struct Detail: Codable {

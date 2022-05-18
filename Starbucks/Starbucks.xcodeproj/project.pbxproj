@@ -19,11 +19,12 @@
 		B3E26F52282A01CA00EB5F20 /* starbucksEventImage.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */; };
 		B3E26F55282A26A300EB5F20 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E26F54282A26A300EB5F20 /* Event.swift */; };
 		D23AF6D1282B9BBB00F53C5F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23AF6D0282B9BBB00F53C5F /* DataManager.swift */; };
-		D24807AE28339AB700413DAA /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24807AD28339AB700413DAA /* Products.swift */; };
+		D24807AE28339AB700413DAA /* RecommandProductName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24807AD28339AB700413DAA /* RecommandProductName.swift */; };
 		D25DEB67282CB41F00086E6C /* URLConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DEB66282CB41F00086E6C /* URLConnector.swift */; };
 		D25DEB69282CB47E00086E6C /* JSONConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DEB68282CB47E00086E6C /* JSONConverter.swift */; };
 		D25DF748282A07C2007862A9 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DF747282A07C2007862A9 /* EventViewController.swift */; };
 		D26D5A3328349C1300178549 /* HomeViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26D5A3228349C1300178549 /* HomeViewDataManager.swift */; };
+		D26D5A352834B34100178549 /* RecommandProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26D5A342834B34100178549 /* RecommandProductImage.swift */; };
 		D27081F128337EA70036A94B /* HomeViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27081F028337EA70036A94B /* HomeViewData.swift */; };
 		D283BF7E2828B0D200A86761 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF7D2828B0D200A86761 /* AppDelegate.swift */; };
 		D283BF802828B0D200A86761 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF7F2828B0D200A86761 /* SceneDelegate.swift */; };
@@ -50,11 +51,12 @@
 		B3E26F54282A26A300EB5F20 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B7A73CB1794AEDE897351AAD /* Pods-Starbucks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.release.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.release.xcconfig"; sourceTree = "<group>"; };
 		D23AF6D0282B9BBB00F53C5F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		D24807AD28339AB700413DAA /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
+		D24807AD28339AB700413DAA /* RecommandProductName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandProductName.swift; sourceTree = "<group>"; };
 		D25DEB66282CB41F00086E6C /* URLConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConnector.swift; sourceTree = "<group>"; };
 		D25DEB68282CB47E00086E6C /* JSONConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConverter.swift; sourceTree = "<group>"; };
 		D25DF747282A07C2007862A9 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		D26D5A3228349C1300178549 /* HomeViewDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewDataManager.swift; sourceTree = "<group>"; };
+		D26D5A342834B34100178549 /* RecommandProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandProductImage.swift; sourceTree = "<group>"; };
 		D27081F028337EA70036A94B /* HomeViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewData.swift; sourceTree = "<group>"; };
 		D283BF7A2828B0D200A86761 /* Starbucks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starbucks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D283BF7D2828B0D200A86761 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,7 +121,8 @@
 				D23AF6D0282B9BBB00F53C5F /* DataManager.swift */,
 				D27081F028337EA70036A94B /* HomeViewData.swift */,
 				D26D5A3228349C1300178549 /* HomeViewDataManager.swift */,
-				D24807AD28339AB700413DAA /* Products.swift */,
+				D24807AD28339AB700413DAA /* RecommandProductName.swift */,
+				D26D5A342834B34100178549 /* RecommandProductImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -308,13 +311,14 @@
 			files = (
 				B35B6F2928338CEB00A08DC5 /* WhatsNewCell.swift in Sources */,
 				D25DF748282A07C2007862A9 /* EventViewController.swift in Sources */,
+				D26D5A352834B34100178549 /* RecommandProductImage.swift in Sources */,
 				B370E269282D02A7006A4480 /* CollectionHeaderView.swift in Sources */,
 				B370E264282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift in Sources */,
 				D283BF822828B0D200A86761 /* ContainerViewController.swift in Sources */,
 				D23AF6D1282B9BBB00F53C5F /* DataManager.swift in Sources */,
 				D283BF7E2828B0D200A86761 /* AppDelegate.swift in Sources */,
 				D283BF802828B0D200A86761 /* SceneDelegate.swift in Sources */,
-				D24807AE28339AB700413DAA /* Products.swift in Sources */,
+				D24807AE28339AB700413DAA /* RecommandProductName.swift in Sources */,
 				D25DEB67282CB41F00086E6C /* URLConnector.swift in Sources */,
 				D26D5A3328349C1300178549 /* HomeViewDataManager.swift in Sources */,
 				B3E26F55282A26A300EB5F20 /* Event.swift in Sources */,
