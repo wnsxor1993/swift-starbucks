@@ -12,11 +12,25 @@ class HomeViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
 
+    let homeDataManager = HomeViewDataManager()
+    private var cancellables = Set<AnyCancellable>()
+
     let data = ["9200000002760", "25", "9200000002487", "9300000003067", "9300000003524"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        postAllDetailDatas()
         configureCollectionView()
+    }
+
+    func postAllDetailDatas() {
+        self.homeDataManager.recommendInfoData
+            .sink(receiveValue: { data in
+                if let name = data.view?.productName {
+                    print(name)
+                }
+            })
+            .store(in: &cancellables)
     }
 
     func configureCollectionView() {
