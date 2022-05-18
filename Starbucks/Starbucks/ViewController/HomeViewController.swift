@@ -32,15 +32,11 @@ class HomeViewController: UIViewController {
     }
 
     func postAllDetailDatas() {
-        self.homeDataManager.recommendInfoData
-            .sink(receiveValue: { _ in
-                self.collectionView.reloadData()
-            })
-            .store(in: &cancellables)
-
-        self.homeDataManager.recommendImageData
-            .sink(receiveValue: { _ in
-                self.collectionView.reloadData()
+        self.homeDataManager.recommendReload
+            .sink(receiveValue: { value in
+                if value {
+                    self.collectionView.reloadData()
+                }
             })
             .store(in: &cancellables)
     }
@@ -151,7 +147,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         switch section {
         case .recommendMenu:
-            return homeDataManager.recommandImage.count // data.count
+            if homeDataManager.recommandImage.count > homeDataManager.recommandInfo.count {
+                return homeDataManager.recommandInfo.count
+            } else {
+                return homeDataManager.recommandImage.count
+            }
 
         case .mainEvent:
             return 1
@@ -173,12 +173,12 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         case .recommendMenu:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? RecommendItemCollectionViewCell else { return UICollectionViewCell()}
 
-            cell.itemImageView.image = UIImage(data: homeDataManager.recommandImage[indexPath.item])
-            cell.nameLabel.text = homeDataManager.recommandInfo[indexPath.item]
+            let sequence = homeDataManager.yourProductsSerial[indexPath.item]
+            let text = homeDataManager.recommandInfo[sequence]
+            let imgData = homeDataManager.recommandImage[sequence] ?? Data()
 
-//            cell.itemImageView.image = UIImage(systemName: "x.circle")
-//            cell.nameLabel.text = homeDataManager.recommandInfo[indexPath.item]
-//            cell.nameLabel.text = data[indexPath.item]
+            cell.itemImageView.image = UIImage(data: imgData)
+            cell.nameLabel.text = text
 
             return cell
         case .mainEvent:

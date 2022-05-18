@@ -11,11 +11,11 @@ import Combine
 class HomeViewDataManager {
 
     let entireData = PassthroughSubject<HomeViewData, Never>()
-    let recommendInfoData = PassthroughSubject<RecommandProductName, Never>()
-    let recommendImageData = PassthroughSubject<RecommandProductImage, Never>()
+    let recommendReload = PassthroughSubject<Bool, Never>()
 
-    private(set) var recommandInfo = [String]()
-    private(set) var recommandImage = [Data]()
+    private(set) var yourProductsSerial = [String]()
+    private(set) var recommandInfo = [String: String]()
+    private(set) var recommandImage = [String: Data]()
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -34,6 +34,7 @@ private extension HomeViewDataManager {
         urlRequest.httpMethod = HTTPMethod.get.getRawValue()
 
         JSONConverter<HomeViewData>.getHomeData(url: urlRequest, handler: { homeData in
+            self.yourProductsSerial.append(contentsOf: homeData.yourRecommand.products)
             self.entireData.send(homeData)
         })
     }
@@ -61,19 +62,23 @@ private extension HomeViewDataManager {
 
                     JSONConverter<RecommandProductName>.getHomeData(url: productInfoRequest, handler: { data in
                         if let name = data.view?.productName {
-                            self.recommandInfo.append(name)
+                            self.recommandInfo[productNumber] = name
+                            self.recommendReload.send(true)
+                        } else {
+                            guard let index = self.yourProductsSerial.firstIndex(of: productNumber) else { return }
+                            self.yourProductsSerial.remove(at: index)
                         }
-
-                        self.recommendInfoData.send(data)
                     })
 
                     JSONConverter<RecommandProductImage>.getHomeData(url: productImageRequest, handler: { data in
                         if let url = data.file?.first?.imageUrl {
                             guard let imgData = self.makeDataImage(url: url) else { return }
-                            self.recommandImage.append(imgData)
+                            self.recommandImage[productNumber] = imgData
+                            self.recommendReload.send(true)
+                        } else {
+                            guard let index = self.yourProductsSerial.firstIndex(of: productNumber) else { return }
+                            self.yourProductsSerial.remove(at: index)
                         }
-
-                        self.recommendImageData.send(data)
                     })
                 }
             })
