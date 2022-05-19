@@ -18,8 +18,6 @@ class HomeViewController: UIViewController {
     private var mainEventImage: UIImage?
     private var subEventsCollection = [(String, UIImage)]()
 
-    let data = ["아이스 카페 아메리카노", "아이스 카페 라떼", "아이스 자몽 허니 블랙티", "클래식 스콘", "미니 클래식 스콘"]
-
     enum Section: Int, CaseIterable {
         case recommendMenu = 0
         case mainEvent
@@ -35,10 +33,12 @@ class HomeViewController: UIViewController {
     }
 
     func postAllDetailDatas() {
-        self.homeDataManager.recommendReload
+        self.homeDataManager.recommandReload
             .sink(receiveValue: { value in
                 if value {
                     self.collectionView.reloadSections(IndexSet(integer: Section.recommendMenu.rawValue))
+                } else {
+                    self.collectionView.reloadSections(IndexSet(integer: Section.popularMenu.rawValue))
                 }
             })
             .store(in: &cancellables)
@@ -139,9 +139,8 @@ class HomeViewController: UIViewController {
             case .popularMenu:
                 let cellSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: cellSize)
-                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15.0)
 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(150))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
 
                 let section = NSCollectionLayoutSection(group: group)
@@ -186,10 +185,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         switch section {
         case .recommendMenu:
-            if homeDataManager.recommandImage.count > homeDataManager.recommandInfo.count {
-                return homeDataManager.recommandInfo.count
+            if homeDataManager.yourRecommandImage.count > homeDataManager.yourRecommandInfo.count {
+                return homeDataManager.yourRecommandInfo.count
             } else {
-                return homeDataManager.recommandImage.count
+                return homeDataManager.yourRecommandImage.count
             }
 
         case .mainEvent:
@@ -199,8 +198,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             return self.subEventsCollection.count
 
         case .popularMenu:
-            return data.count
-
+            if homeDataManager.nowRecommandImage.count > homeDataManager.nowRecommandInfo.count {
+                return homeDataManager.nowRecommandInfo.count
+            } else {
+                return homeDataManager.nowRecommandImage.count
+            }
         }
     }
 
@@ -213,8 +215,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? RecommendItemCollectionViewCell else { return UICollectionViewCell()}
 
             let sequence = homeDataManager.yourProductsSerial[indexPath.item]
-            let text = homeDataManager.recommandInfo[sequence]
-            let imgData = homeDataManager.recommandImage[sequence] ?? Data()
+            let text = homeDataManager.yourRecommandInfo[sequence]
+            let imgData = homeDataManager.yourRecommandImage[sequence] ?? Data()
 
             cell.itemImageView.image = UIImage(data: imgData)
             cell.nameLabel.text = text
@@ -239,9 +241,13 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         case .popularMenu:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? RecommendItemCollectionViewCell else { return UICollectionViewCell()}
 
-            cell.itemImageView.image = UIImage(systemName: "x.circle")
-            cell.nameLabel.text = data[indexPath.item]
-            cell.setRank(rank: indexPath.item)
+            let sequence = homeDataManager.nowProductSerial[indexPath.item]
+            let text = homeDataManager.nowRecommandInfo[sequence]
+            let imgData = homeDataManager.nowRecommandImage[sequence] ?? Data()
+
+            cell.itemImageView.image = UIImage(data: imgData)
+            cell.nameLabel.text = text
+            cell.rankLabel.text = String(indexPath.item + 1)
 
             return cell
         }
@@ -265,7 +271,14 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         case .popularMenu:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
-            header.setTimeLabel(time: "주중 오후 4시 기준")
+
+            let now = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "ko_KR")
+            dateFormatter.dateFormat = "a hh시"
+            let date = dateFormatter.string(from: now)
+
+            header.setTimeLabel(time: "주중 \(date) 기준")
             return header
 
         default:
