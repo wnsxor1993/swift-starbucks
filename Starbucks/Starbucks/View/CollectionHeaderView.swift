@@ -61,7 +61,6 @@ class CollectionHeaderView: UICollectionReusableView {
 
         attributedString.addAttribute(.foregroundColor, value: UIColor.systemGreen, range: (text as NSString).range(of: name))
         titleLabel.attributedText = attributedString
-
     }
 
 }
