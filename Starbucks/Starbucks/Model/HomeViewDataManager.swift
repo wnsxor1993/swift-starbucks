@@ -13,6 +13,7 @@ class HomeViewDataManager {
     let entireData = PassthroughSubject<HomeViewData, Never>()
     let recommendReload = PassthroughSubject<Bool, Never>()
     let mainEventReload = PassthroughSubject<Data, Never>()
+    let subEventReload = PassthroughSubject<(String, Data), Never>()
 
     private(set) var yourProductsSerial = [String]()
     private(set) var recommandInfo = [String: String]()
@@ -24,6 +25,7 @@ class HomeViewDataManager {
         self.getEntiredData()
         self.getRecommendInfoData()
         self.getMainEvent()
+        self.getSubEvents()
     }
 
     deinit {
@@ -106,22 +108,30 @@ private extension HomeViewDataManager {
             .store(in: &cancellables)
     }
 
-//    func getSubEvents() {
-//        guard let mainEvent = URL(string: URLValue.mainEventData.getRawValue() + Query.mainEventList.getRawValue()) else { return }
-//
-//        let method = HTTPMethod.post.getRawValue()
-//        let encode = HTTPHeader.urlEncoded.getRawValue()
-//
-//        var mainEventRequest = URLRequest(url: mainEvent)
-//        mainEventRequest.httpMethod = method
-//        mainEventRequest.setValue(encode, forHTTPHeaderField: "Content-Type")
-//        mainEventRequest.httpBody = self.setHttpBody(value: "all", body: .mainEvent)
-//
-//        self.entireData
-//            .sink(receiveValue: { homeData in
-//
-//            })
-//    }
+    func getSubEvents() {
+        guard let mainEvent = URL(string: URLValue.mainEventData.getRawValue() + Query.mainEventList.getRawValue()) else { return }
+
+        let method = HTTPMethod.post.getRawValue()
+        let encode = HTTPHeader.urlEncoded.getRawValue()
+
+        var subEventsRequest = URLRequest(url: mainEvent)
+        subEventsRequest.httpMethod = method
+        subEventsRequest.setValue(encode, forHTTPHeaderField: "Content-Type")
+        subEventsRequest.httpBody = self.setHttpBody(value: "all", body: .mainEvent)
+
+        self.entireData
+            .sink(receiveValue: { _ in
+                JSONConverter<SubEvents>.getHomeData(url: subEventsRequest, handler: { data in
+                    data.list.forEach { subEvent in
+                        let imgURL = subEvent.imageUploadPath.appendingPathComponent("/upload/promotion/").appendingPathComponent(subEvent.thumbnail)
+                        self.makeDataImage(url: imgURL, handler: { data in
+                            self.subEventReload.send((subEvent.title, data))
+                        })
+                    }
+                })
+            })
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: Inner using function
@@ -138,7 +148,6 @@ private extension HomeViewDataManager {
     }
 
     func makeDataImage(url: URL, handler: @escaping (Data) -> Void) {
-
 
         if let cachedImage = ImageCacheManager.loadCachedImage(url: url) { handler(cachedImage) }
 
