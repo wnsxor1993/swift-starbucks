@@ -15,6 +15,7 @@ class RecommendItemCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        itemImageView.layer.cornerRadius = 55
     }
 
     func setRank(rank: Int) {
