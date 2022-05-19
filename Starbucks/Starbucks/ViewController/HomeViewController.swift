@@ -36,9 +36,9 @@ class HomeViewController: UIViewController {
         self.homeDataManager.recommandReload
             .sink(receiveValue: { value in
                 if value {
-                    self.collectionView.reloadData()
+                    self.collectionView.reloadSections(IndexSet(integer: Section.recommendMenu.rawValue))
                 } else {
-                    self.collectionView.reloadData()
+                    self.collectionView.reloadSections(IndexSet(integer: Section.popularMenu.rawValue))
                 }
             })
             .store(in: &cancellables)
@@ -47,7 +47,7 @@ class HomeViewController: UIViewController {
             .sink(receiveValue: { data in
                 let image = UIImage(data: data)
                 self.mainEventImage = image
-                self.collectionView.reloadData()
+                self.collectionView.reloadSections(IndexSet(integer: Section.mainEvent.rawValue))
             })
             .store(in: &cancellables)
 
@@ -55,9 +55,15 @@ class HomeViewController: UIViewController {
             .sink(receiveValue: { data in
                 guard let image = UIImage(data: data.1) else { return }
                 self.subEventsCollection.append((data.0, image))
-                self.collectionView.reloadData()
+                self.collectionView.reloadSections(IndexSet(integer: Section.whatsNew.rawValue))
             })
             .store(in: &cancellables)
+
+        self.homeDataManager.entireData
+            .sink { data in
+                UserDefaults.standard.set(data.displayName, forKey: "userName")
+                self.collectionView.reloadSections(IndexSet(integer: Section.recommendMenu.rawValue))
+            }.store(in: &cancellables)
     }
 
     func configureCollectionView() {
@@ -255,7 +261,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         case .recommendMenu:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
-            header.setTitleLabel(text: "준택이의 추천 메뉴")
+            let userName = (UserDefaults.standard.string(forKey: "userName") ?? "사용자") as String
+            header.setTitleLabel(name: userName)
             return header
 
         case .whatsNew:

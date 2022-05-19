@@ -54,8 +54,13 @@ class CollectionHeaderView: UICollectionReusableView {
         timeLabel.text = time
     }
 
-    func setTitleLabel(text: String) {
-        titleLabel.text = text
+    func setTitleLabel(name: String) {
+        titleLabel.text = "\(name) 님을 위한 추천메뉴"
+        guard let text = titleLabel.text else { return }
+        let attributedString = NSMutableAttributedString(string: titleLabel.text ?? "")
+
+        attributedString.addAttribute(.foregroundColor, value: UIColor.systemGreen, range: (text as NSString).range(of: name))
+        titleLabel.attributedText = attributedString
     }
 
 }
