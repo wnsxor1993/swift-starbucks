@@ -15,7 +15,7 @@ class RecommendItemCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        itemImageView.layer.cornerRadius = 55
+        configureCircleLayer()
     }
 
     override func prepareForReuse() {
@@ -25,6 +25,10 @@ class RecommendItemCollectionViewCell: UICollectionViewCell {
 
     func setRank(rank: Int) {
         rankLabel.text = "\(rank+1)"
+    }
+
+    private func configureCircleLayer() {
+        itemImageView.layer.cornerRadius = itemImageView.frame.width / 3.14
     }
 
 }
