@@ -72,9 +72,11 @@ private extension HomeViewDataManager {
 
                     JSONConverter<RecommandProductImage>.getHomeData(url: productImageRequest, handler: { data in
                         if let url = data.file?.first?.imageUrl {
-                            guard let imgData = self.makeDataImage(url: url) else { return }
-                            self.recommandImage[productNumber] = imgData
-                            self.recommendReload.send(true)
+                            self.makeDataImage(url: url, handler: { data in
+                                self.recommandImage[productNumber] = data
+                                self.recommendReload.send(true)
+                            })
+
                         } else {
                             guard let index = self.yourProductsSerial.firstIndex(of: productNumber) else { return }
                             self.yourProductsSerial.remove(at: index)
@@ -95,14 +97,25 @@ private extension HomeViewDataManager {
         return formDataString.data(using: .utf8)
     }
 
-    func makeDataImage(url: URL) -> Data? {
-        do {
-            let data = try Data(contentsOf: url)
-            return data
-        } catch {
-           return nil
-        }
+    func makeDataImage(url: URL, handler: @escaping (Data) -> Void) {
+
+        if let cachedImage = ImageCacheManager.loadCachedImage(url: url) { handler(cachedImage) }
+
+        let imageRequest = URLRequest(url: url)
+        URLConnector.getRequest(imageRequest)
+            .sink { error in
+                print(error)
+            } receiveValue: { data in
+                ImageCacheManager.shared.setObject(NSData(data: data), forKey: url.lastPathComponent as NSString)
+                if let filePath = ImageCacheManager.path {
+                FileManager().createFile(atPath: filePath, contents: data, attributes: nil)
+                    handler(data)
+                }
+            }
+            .store(in: &cancellables)
+
     }
+
 }
 
 extension HomeViewDataManager {
