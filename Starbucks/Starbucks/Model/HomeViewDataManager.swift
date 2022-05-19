@@ -12,6 +12,7 @@ class HomeViewDataManager {
 
     let entireData = PassthroughSubject<HomeViewData, Never>()
     let recommendReload = PassthroughSubject<Bool, Never>()
+    let mainEventReload = PassthroughSubject<Data, Never>()
 
     private(set) var yourProductsSerial = [String]()
     private(set) var recommandInfo = [String: String]()
@@ -22,8 +23,15 @@ class HomeViewDataManager {
     init() {
         self.getEntiredData()
         self.getRecommendInfoData()
+        self.getMainEvent()
+    }
+
+    deinit {
+        self.cancellables.forEach { $0.cancel() }
     }
 }
+
+// MARK: Get data
 
 private extension HomeViewDataManager {
 
@@ -76,7 +84,6 @@ private extension HomeViewDataManager {
                                 self.recommandImage[productNumber] = data
                                 self.recommendReload.send(true)
                             })
-
                         } else {
                             guard let index = self.yourProductsSerial.firstIndex(of: productNumber) else { return }
                             self.yourProductsSerial.remove(at: index)
@@ -87,6 +94,39 @@ private extension HomeViewDataManager {
             .store(in: &cancellables)
     }
 
+    func getMainEvent() {
+        self.entireData
+            .sink(receiveValue: { homeData in
+                guard let imgURL = URL(string: "\(homeData.mainEvent.imgUPLOADPATH)\(homeData.mainEvent.mobTHUM)") else { return }
+
+                self.makeDataImage(url: imgURL, handler: { data in
+                    self.mainEventReload.send(data)
+                })
+            })
+            .store(in: &cancellables)
+    }
+
+//    func getSubEvents() {
+//        guard let mainEvent = URL(string: URLValue.mainEventData.getRawValue() + Query.mainEventList.getRawValue()) else { return }
+//
+//        let method = HTTPMethod.post.getRawValue()
+//        let encode = HTTPHeader.urlEncoded.getRawValue()
+//
+//        var mainEventRequest = URLRequest(url: mainEvent)
+//        mainEventRequest.httpMethod = method
+//        mainEventRequest.setValue(encode, forHTTPHeaderField: "Content-Type")
+//        mainEventRequest.httpBody = self.setHttpBody(value: "all", body: .mainEvent)
+//
+//        self.entireData
+//            .sink(receiveValue: { homeData in
+//
+//            })
+//    }
+}
+
+// MARK: Inner using function
+
+private extension HomeViewDataManager {
     func setHttpBody(value: Any, body: HTTPBody) -> Data? {
         let infoParam: [String: Any] = [body.getRawValue(): value]
 
@@ -98,6 +138,7 @@ private extension HomeViewDataManager {
     }
 
     func makeDataImage(url: URL, handler: @escaping (Data) -> Void) {
+
 
         if let cachedImage = ImageCacheManager.loadCachedImage(url: url) { handler(cachedImage) }
 
@@ -113,7 +154,6 @@ private extension HomeViewDataManager {
                 }
             }
             .store(in: &cancellables)
-
     }
 
 }
@@ -132,6 +172,7 @@ extension HomeViewDataManager {
     enum URLValue: String {
         case homeEntireData = "https://api.codesquad.kr/starbuckst"
         case recommendData = "https://www.starbucks.co.kr/menu"
+        case mainEventData = "https://www.starbucks.co.kr/whats_new"
 
         func getRawValue() -> String {
             return self.rawValue
@@ -141,6 +182,7 @@ extension HomeViewDataManager {
     enum Query: String {
         case recommendInfo = "/productViewAjax.do"
         case recommendImage = "/productFileAjax.do"
+        case mainEventList = "/getIngList.do"
 
         func getRawValue() -> String {
             return self.rawValue
@@ -158,6 +200,7 @@ extension HomeViewDataManager {
     enum HTTPBody: String {
         case recommendInfo = "product_cd"
         case recommendImage = "PRODUCT_CD"
+        case mainEvent = "MENU_CD"
 
         func getRawValue() -> String {
             return self.rawValue

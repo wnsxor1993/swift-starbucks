@@ -15,6 +15,8 @@ class HomeViewController: UIViewController {
     let homeDataManager = HomeViewDataManager()
     private var cancellables = Set<AnyCancellable>()
 
+    private var mainEventImage: UIImage?
+
     let data = ["아이스 카페 아메리카노", "아이스 카페 라떼", "아이스 자몽 허니 블랙티", "클래식 스콘", "미니 클래식 스콘"]
 
     enum Section: Int, CaseIterable {
@@ -37,6 +39,14 @@ class HomeViewController: UIViewController {
                 if value {
                     self.collectionView.reloadData()
                 }
+            })
+            .store(in: &cancellables)
+
+        self.homeDataManager.mainEventReload
+            .sink(receiveValue: { data in
+                let image = UIImage(data: data)
+                self.mainEventImage = image
+                self.collectionView.reloadData()
             })
             .store(in: &cancellables)
     }
@@ -86,10 +96,11 @@ class HomeViewController: UIViewController {
             case .mainEvent:
                 let cellSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: cellSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.6))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(self.calculateMainEventImageHeight()))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15.0, bottom: 30, trailing: 15.0)
+
                 return section
 
             case .whatsNew:
@@ -132,6 +143,19 @@ class HomeViewController: UIViewController {
             }
         }
         return layout
+    }
+}
+
+// MARK: Inner using function
+
+private extension HomeViewController {
+    func calculateMainEventImageHeight() -> CGFloat {
+        guard let height = self.mainEventImage?.size.height, let width = self.mainEventImage?.size.width else { return 0 }
+
+        let ratio = height / width
+        let realHeight = self.view.frame.width * ratio
+
+        return realHeight
     }
 }
 
@@ -184,7 +208,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         case .mainEvent:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainEventCell", for: indexPath) as? MainEventCell else { return UICollectionViewCell() }
 
-            cell.mainImageView.image = UIImage(named: "starbucksEventImage")
+            cell.mainImageView.image = mainEventImage
+
+//            cell.mainImageView.image = UIImage(named: "starbucksEventImage")
             return cell
 
         case .whatsNew:
@@ -230,5 +256,4 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             return UICollectionReusableView()
         }
     }
-
  }
