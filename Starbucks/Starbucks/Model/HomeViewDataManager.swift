@@ -138,20 +138,24 @@ private extension HomeViewDataManager {
     }
 
     func makeDataImage(url: URL, handler: @escaping (Data) -> Void) {
-        let urlRequest = URLRequest(url: url)
-        URLConnector.getRequest(urlRequest)
-            .sink(receiveCompletion: { result in
-                switch result {
-                case .finished:
-                    break
-                case .failure:
-                    break
+
+
+        if let cachedImage = ImageCacheManager.loadCachedImage(url: url) { handler(cachedImage) }
+
+        let imageRequest = URLRequest(url: url)
+        URLConnector.getRequest(imageRequest)
+            .sink { error in
+                print(error)
+            } receiveValue: { data in
+                ImageCacheManager.shared.setObject(NSData(data: data), forKey: url.lastPathComponent as NSString)
+                if let filePath = ImageCacheManager.path {
+                FileManager().createFile(atPath: filePath, contents: data, attributes: nil)
+                    handler(data)
                 }
-            }, receiveValue: { data in
-                handler(data)
-            })
+            }
             .store(in: &cancellables)
     }
+
 }
 
 extension HomeViewDataManager {

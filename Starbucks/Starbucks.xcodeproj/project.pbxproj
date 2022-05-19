@@ -10,6 +10,7 @@
 		B35B6F2928338CEB00A08DC5 /* WhatsNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35B6F2728338CEB00A08DC5 /* WhatsNewCell.swift */; };
 		B35B6F2A28338CEB00A08DC5 /* WhatsNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35B6F2828338CEB00A08DC5 /* WhatsNewCell.xib */; };
 		B35B6F2C28338F0900A08DC5 /* whatsNewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35B6F2B28338F0900A08DC5 /* whatsNewHeaderView.swift */; };
+		B35B6F2E2835DF3F00A08DC5 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35B6F2D2835DF3F00A08DC5 /* ImageCacheManager.swift */; };
 		B370E264282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370E262282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift */; };
 		B370E265282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B370E263282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib */; };
 		B370E269282D02A7006A4480 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370E268282D02A7006A4480 /* CollectionHeaderView.swift */; };
@@ -41,6 +42,7 @@
 		B35B6F2728338CEB00A08DC5 /* WhatsNewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WhatsNewCell.swift; path = Starbucks/View/WhatsNewCell.swift; sourceTree = SOURCE_ROOT; };
 		B35B6F2828338CEB00A08DC5 /* WhatsNewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WhatsNewCell.xib; path = Starbucks/View/WhatsNewCell.xib; sourceTree = SOURCE_ROOT; };
 		B35B6F2B28338F0900A08DC5 /* whatsNewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whatsNewHeaderView.swift; sourceTree = "<group>"; };
+		B35B6F2D2835DF3F00A08DC5 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		B370E262282CB7A8006A4480 /* RecommendItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		B370E263282CB7A8006A4480 /* RecommendItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		B370E268282D02A7006A4480 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				B3E26F51282A01CA00EB5F20 /* starbucksEventImage.png */,
 				D283BF882828B0D300A86761 /* LaunchScreen.storyboard */,
 				D283BF8B2828B0D300A86761 /* Info.plist */,
+				B35B6F2D2835DF3F00A08DC5 /* ImageCacheManager.swift */,
 			);
 			path = Starbucks;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				D26D5A3328349C1300178549 /* HomeViewDataManager.swift in Sources */,
 				B3E26F55282A26A300EB5F20 /* Event.swift in Sources */,
 				B35B6F2C28338F0900A08DC5 /* whatsNewHeaderView.swift in Sources */,
+				B35B6F2E2835DF3F00A08DC5 /* ImageCacheManager.swift in Sources */,
 				B3907A1428337ECF00A96679 /* MainEventCell.swift in Sources */,
 				D25DEB69282CB47E00086E6C /* JSONConverter.swift in Sources */,
 				B3E26F3C282958A300EB5F20 /* HomeViewController.swift in Sources */,
