@@ -16,6 +16,8 @@ class HomeViewDataManager {
     let subEventReload = PassthroughSubject<(String, Data), Never>()
 
     private(set) var yourProductsSerial = [String]()
+    private(set) var nowProductSerial = [String]()
+
     private(set) var recommandInfo = [String: String]()
     private(set) var recommandImage = [String: Data]()
 
@@ -23,7 +25,7 @@ class HomeViewDataManager {
 
     init() {
         self.getEntiredData()
-        self.getRecommendInfoData()
+        self.getYourRecommand()
         self.getMainEvent()
         self.getSubEvents()
     }
@@ -49,7 +51,7 @@ private extension HomeViewDataManager {
         })
     }
 
-    func getRecommendInfoData() {
+    func getYourRecommand() {
         guard let productInfo = URL(string: URLValue.recommendData.getRawValue() + Query.recommendInfo.getRawValue()), let productImage = URL(string: URLValue.recommendData.getRawValue() + Query.recommendImage.getRawValue()) else { return }
 
         let method = HTTPMethod.post.getRawValue()
@@ -129,6 +131,53 @@ private extension HomeViewDataManager {
                         })
                     }
                 })
+            })
+            .store(in: &cancellables)
+    }
+
+    func getNowRecommand() {
+        guard let productInfo = URL(string: URLValue.recommendData.getRawValue() + Query.recommendInfo.getRawValue()), let productImage = URL(string: URLValue.recommendData.getRawValue() + Query.recommendImage.getRawValue()) else { return }
+
+        let method = HTTPMethod.post.getRawValue()
+        let encode = HTTPHeader.urlEncoded.getRawValue()
+
+        var productInfoRequest = URLRequest(url: productInfo)
+        productInfoRequest.httpMethod = method
+        productInfoRequest.setValue(encode, forHTTPHeaderField: "Content-Type")
+
+        var productImageRequest = URLRequest(url: productImage)
+        productImageRequest.httpMethod = method
+        productImageRequest.setValue(encode, forHTTPHeaderField: "Content-Type")
+
+        self.entireData
+            .sink(receiveValue: { homeData in
+                homeData.nowRecommand.products.forEach { productNumber in
+                    guard let infoData = self.setHttpBody(value: productNumber, body: .recommendInfo), let imageData = self.setHttpBody(value: productNumber, body: .recommendImage) else { return }
+                    productInfoRequest.httpBody = infoData
+                    productImageRequest.httpBody = imageData
+
+                    JSONConverter<RecommandProductName>.getHomeData(url: productInfoRequest, handler: { data in
+                        if let name = data.view?.productName {
+                            self.recommandInfo[productNumber] = name
+                            self.recommendReload.send(false)
+                        } else {
+                            guard let index = self.nowProductSerial.firstIndex(of: productNumber) else { return }
+                            self.nowProductSerial.remove(at: index)
+                        }
+                    })
+
+                    JSONConverter<RecommandProductImage>.getHomeData(url: productImageRequest, handler: { data in
+                        if let url = data.file?.first?.imageUrl {
+                            self.makeDataImage(url: url, handler: { data in
+                                self.recommandImage[productNumber] = data
+                                self.recommendReload.send(false)
+                            })
+                        } else {
+                            guard let index = self.nowProductSerial.firstIndex(of: productNumber) else { return }
+                            self.nowProductSerial.remove(at: index)
+                        }
+                    })
+                }
             })
             .store(in: &cancellables)
     }
