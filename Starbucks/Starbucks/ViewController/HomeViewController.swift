@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
 
     private var mainEventImage: UIImage?
+    private var subEventsCollection = [(String, UIImage)]()
 
     let data = ["아이스 카페 아메리카노", "아이스 카페 라떼", "아이스 자몽 허니 블랙티", "클래식 스콘", "미니 클래식 스콘"]
 
@@ -46,6 +47,14 @@ class HomeViewController: UIViewController {
             .sink(receiveValue: { data in
                 let image = UIImage(data: data)
                 self.mainEventImage = image
+                self.collectionView.reloadData()
+            })
+            .store(in: &cancellables)
+
+        self.homeDataManager.subEventReload
+            .sink(receiveValue: { data in
+                guard let image = UIImage(data: data.1) else { return }
+                self.subEventsCollection.append((data.0, image))
                 self.collectionView.reloadData()
             })
             .store(in: &cancellables)
@@ -181,7 +190,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             return 1
 
         case .whatsNew:
-            return 5
+            return self.subEventsCollection.count
 
         case .popularMenu:
             return data.count
@@ -210,14 +219,13 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
             cell.mainImageView.image = mainEventImage
 
-//            cell.mainImageView.image = UIImage(named: "starbucksEventImage")
             return cell
 
         case .whatsNew:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WhatsNewCell", for: indexPath) as? WhatsNewCell else { return UICollectionViewCell() }
 
-            cell.imageView.image = UIImage(named: "starbucksEventImage")
-            cell.titleLabel.text = "돌체라떼 Free for 준택"
+            cell.imageView.image = self.subEventsCollection[indexPath.item].1
+            cell.titleLabel.text = self.subEventsCollection[indexPath.item].0
             cell.contentLabel.text = "준택이에게 돌체라떼 평생 무료 이용권을 드립니다^0^"
 
             return cell

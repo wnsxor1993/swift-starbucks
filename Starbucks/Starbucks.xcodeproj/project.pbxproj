@@ -26,6 +26,7 @@
 		D25DF748282A07C2007862A9 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DF747282A07C2007862A9 /* EventViewController.swift */; };
 		D26D5A3328349C1300178549 /* HomeViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26D5A3228349C1300178549 /* HomeViewDataManager.swift */; };
 		D26D5A352834B34100178549 /* RecommandProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26D5A342834B34100178549 /* RecommandProductImage.swift */; };
+		D26D5A372836147400178549 /* SubEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26D5A362836147400178549 /* SubEvents.swift */; };
 		D27081F128337EA70036A94B /* HomeViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27081F028337EA70036A94B /* HomeViewData.swift */; };
 		D283BF7E2828B0D200A86761 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF7D2828B0D200A86761 /* AppDelegate.swift */; };
 		D283BF802828B0D200A86761 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283BF7F2828B0D200A86761 /* SceneDelegate.swift */; };
@@ -59,6 +60,7 @@
 		D25DF747282A07C2007862A9 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		D26D5A3228349C1300178549 /* HomeViewDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewDataManager.swift; sourceTree = "<group>"; };
 		D26D5A342834B34100178549 /* RecommandProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandProductImage.swift; sourceTree = "<group>"; };
+		D26D5A362836147400178549 /* SubEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubEvents.swift; sourceTree = "<group>"; };
 		D27081F028337EA70036A94B /* HomeViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewData.swift; sourceTree = "<group>"; };
 		D283BF7A2828B0D200A86761 /* Starbucks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starbucks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D283BF7D2828B0D200A86761 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				D23AF6D0282B9BBB00F53C5F /* DataManager.swift */,
 				D27081F028337EA70036A94B /* HomeViewData.swift */,
 				D26D5A3228349C1300178549 /* HomeViewDataManager.swift */,
+				D26D5A362836147400178549 /* SubEvents.swift */,
 				D24807AD28339AB700413DAA /* RecommandProductName.swift */,
 				D26D5A342834B34100178549 /* RecommandProductImage.swift */,
 			);
@@ -321,6 +324,7 @@
 				D23AF6D1282B9BBB00F53C5F /* DataManager.swift in Sources */,
 				D283BF7E2828B0D200A86761 /* AppDelegate.swift in Sources */,
 				D283BF802828B0D200A86761 /* SceneDelegate.swift in Sources */,
+				D26D5A372836147400178549 /* SubEvents.swift in Sources */,
 				D24807AE28339AB700413DAA /* RecommandProductName.swift in Sources */,
 				D25DEB67282CB41F00086E6C /* URLConnector.swift in Sources */,
 				D26D5A3328349C1300178549 /* HomeViewDataManager.swift in Sources */,
