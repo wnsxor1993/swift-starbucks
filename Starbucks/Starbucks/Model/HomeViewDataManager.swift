@@ -11,15 +11,17 @@ import Combine
 class HomeViewDataManager {
 
     let entireData = PassthroughSubject<HomeViewData, Never>()
-    let recommendReload = PassthroughSubject<Bool, Never>()
+    let recommandReload = PassthroughSubject<Bool, Never>()
     let mainEventReload = PassthroughSubject<Data, Never>()
     let subEventReload = PassthroughSubject<(String, Data), Never>()
 
     private(set) var yourProductsSerial = [String]()
-    private(set) var nowProductSerial = [String]()
+    private(set) var yourRecommandInfo = [String: String]()
+    private(set) var yourRecommandImage = [String: Data]()
 
-    private(set) var recommandInfo = [String: String]()
-    private(set) var recommandImage = [String: Data]()
+    private(set) var nowProductSerial = [String]()
+    private(set) var nowRecommandInfo = [String: String]()
+    private(set) var nowRecommandImage = [String: Data]()
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -28,6 +30,7 @@ class HomeViewDataManager {
         self.getYourRecommand()
         self.getMainEvent()
         self.getSubEvents()
+        self.getNowRecommand()
     }
 
     deinit {
@@ -47,6 +50,7 @@ private extension HomeViewDataManager {
 
         JSONConverter<HomeViewData>.getHomeData(url: urlRequest, handler: { homeData in
             self.yourProductsSerial.append(contentsOf: homeData.yourRecommand.products)
+            self.nowProductSerial.append(contentsOf: homeData.nowRecommand.products)
             self.entireData.send(homeData)
         })
     }
@@ -74,8 +78,8 @@ private extension HomeViewDataManager {
 
                     JSONConverter<RecommandProductName>.getHomeData(url: productInfoRequest, handler: { data in
                         if let name = data.view?.productName {
-                            self.recommandInfo[productNumber] = name
-                            self.recommendReload.send(true)
+                            self.yourRecommandInfo[productNumber] = name
+                            self.recommandReload.send(true)
                         } else {
                             guard let index = self.yourProductsSerial.firstIndex(of: productNumber) else { return }
                             self.yourProductsSerial.remove(at: index)
@@ -85,8 +89,8 @@ private extension HomeViewDataManager {
                     JSONConverter<RecommandProductImage>.getHomeData(url: productImageRequest, handler: { data in
                         if let url = data.file?.first?.imageUrl {
                             self.makeDataImage(url: url, handler: { data in
-                                self.recommandImage[productNumber] = data
-                                self.recommendReload.send(true)
+                                self.yourRecommandImage[productNumber] = data
+                                self.recommandReload.send(true)
                             })
                         } else {
                             guard let index = self.yourProductsSerial.firstIndex(of: productNumber) else { return }
@@ -158,8 +162,8 @@ private extension HomeViewDataManager {
 
                     JSONConverter<RecommandProductName>.getHomeData(url: productInfoRequest, handler: { data in
                         if let name = data.view?.productName {
-                            self.recommandInfo[productNumber] = name
-                            self.recommendReload.send(false)
+                            self.nowRecommandInfo[productNumber] = name
+                            self.recommandReload.send(false)
                         } else {
                             guard let index = self.nowProductSerial.firstIndex(of: productNumber) else { return }
                             self.nowProductSerial.remove(at: index)
@@ -169,8 +173,8 @@ private extension HomeViewDataManager {
                     JSONConverter<RecommandProductImage>.getHomeData(url: productImageRequest, handler: { data in
                         if let url = data.file?.first?.imageUrl {
                             self.makeDataImage(url: url, handler: { data in
-                                self.recommandImage[productNumber] = data
-                                self.recommendReload.send(false)
+                                self.nowRecommandImage[productNumber] = data
+                                self.recommandReload.send(false)
                             })
                         } else {
                             guard let index = self.nowProductSerial.firstIndex(of: productNumber) else { return }
