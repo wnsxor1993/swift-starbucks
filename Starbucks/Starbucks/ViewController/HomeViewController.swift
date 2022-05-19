@@ -79,7 +79,7 @@ class HomeViewController: UIViewController {
                 let cellSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: cellSize)
 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(150))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
 
                 let section = NSCollectionLayoutSection(group: group)
@@ -241,6 +241,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         case .recommendMenu:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionHeaderView.headerId, for: indexPath) as? CollectionHeaderView else { return UICollectionReusableView() }
+            header.setTitleLabel(text: "준택이의 추천 메뉴")
             return header
 
         case .whatsNew:

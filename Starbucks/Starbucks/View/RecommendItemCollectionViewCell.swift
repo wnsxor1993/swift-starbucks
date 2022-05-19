@@ -18,6 +18,11 @@ class RecommendItemCollectionViewCell: UICollectionViewCell {
         itemImageView.layer.cornerRadius = 55
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        rankLabel.text = ""
+    }
+
     func setRank(rank: Int) {
         rankLabel.text = "\(rank+1)"
     }

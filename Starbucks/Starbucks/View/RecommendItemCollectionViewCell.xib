@@ -11,10 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCell" id="gTV-IL-0wX" customClass="RecommendItemCollectionViewCell" customModule="Starbucks" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="179" height="216"/>
+            <rect key="frame" x="0.0" y="0.0" width="179" height="198"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="179" height="216"/>
+                <rect key="frame" x="0.0" y="0.0" width="179" height="198"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5k8-dC-uKX">
@@ -55,13 +55,13 @@
                 <constraint firstAttribute="trailing" secondItem="5k8-dC-uKX" secondAttribute="trailing" constant="10" id="bgT-gh-XpD"/>
                 <constraint firstItem="5k8-dC-uKX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="mvC-f7-Ujc"/>
             </constraints>
-            <size key="customSize" width="179" height="210"/>
+            <size key="customSize" width="179" height="192"/>
             <connections>
                 <outlet property="itemImageView" destination="5k8-dC-uKX" id="hbv-KY-PSa"/>
                 <outlet property="nameLabel" destination="aro-OC-sae" id="Q6m-WK-j6a"/>
                 <outlet property="rankLabel" destination="KGx-Nd-zWL" id="TD2-TV-BEI"/>
             </connections>
-            <point key="canvasLocation" x="231.15942028985509" y="127.23214285714285"/>
+            <point key="canvasLocation" x="231.15942028985509" y="121.20535714285714"/>
         </collectionViewCell>
     </objects>
     <resources>
